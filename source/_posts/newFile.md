@@ -1,3 +1,11 @@
+---
+title: 注意事项
+tags: test
+categories: hexo
+---
+
+
+
 **每次换电脑更新博客前，先执行以下步骤**
 
 1. 先`git pull hexo`最新的hexo文件
