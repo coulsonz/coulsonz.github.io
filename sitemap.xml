@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.syswar.cc/2018/12/12/newFile/</loc>
+    <loc>http://www.syswar.cc/2018/12/12/Hexo%E6%95%99%E7%A8%8B/</loc>
     
-    <lastmod>2018-12-12T13:56:57.654Z</lastmod>
+    <lastmod>2018-12-12T15:49:53.324Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.syswar.cc/2018/12/12/Hexo%E6%95%99%E7%A8%8B/</loc>
+    <loc>http://www.syswar.cc/2018/12/12/%E4%BD%A0%E5%A5%BD-Hexo/</loc>
     
-    <lastmod>2018-12-12T13:33:55.232Z</lastmod>
+    <lastmod>2018-12-12T15:49:25.901Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.syswar.cc/2018/12/12/hello-world/</loc>
+    
+    <lastmod>2018-12-12T15:49:21.864Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.syswar.cc/2018/12/12/newFile/</loc>
+    
+    <lastmod>2018-12-12T15:42:49.297Z</lastmod>
     
   </url>
   
@@ -30,23 +44,9 @@
   </url>
   
   <url>
-    <loc>http://www.syswar.cc/2018/12/12/%E4%BD%A0%E5%A5%BD-Hexo/</loc>
-    
-    <lastmod>2018-12-12T11:01:54.568Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.syswar.cc/about/index.html</loc>
     
     <lastmod>2018-12-12T11:01:54.568Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.syswar.cc/2018/12/12/hello-world/</loc>
-    
-    <lastmod>2018-12-12T11:01:54.567Z</lastmod>
     
   </url>
   
