@@ -5,4 +5,5 @@ tags:
 - course
 categories:
 - hexo
+password: pwd
 ---

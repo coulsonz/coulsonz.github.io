@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://syswar.cc
+url: http://www.syswar.cc
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -74,9 +74,23 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins: hexo-generate-feed
 ## Themes: https://hexo.io/themes/
 # theme: landscape
 theme: next
+
+# Search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+  
+# 自动生成sitemap
+sitemap: 
+  path: sitemap.xml
+baidusitemap: 
+  path: baidusitemap.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
