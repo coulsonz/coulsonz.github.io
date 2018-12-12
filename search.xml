@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[注意事项]]></title>
+    <url>%2F2018%2F12%2F12%2FnewFile%2F</url>
+    <content type="text"><![CDATA[每次换电脑更新博客前，先执行以下步骤 先git pull hexo最新的hexo文件 执行npm install 编辑、撰写文章或其他博客更新改动 依次执行git add .、git commit -m &#39;back up hexo files&#39;（引号内容可改）、git push指令，保证 hexo 分支版本最新 最后，发布新内容，执行hexo d -g指令]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F12%2F12%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>course</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo教程]]></title>
+    <url>%2F2018%2F12%2F12%2FHexo%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>course</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[你好,Hexo]]></title>
+    <url>%2F2018%2F12%2F12%2F%E4%BD%A0%E5%A5%BD-Hexo%2F</url>
+    <content type="text"><![CDATA[这是测试的页面]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+</search>
