@@ -1,6 +1,6 @@
 ---
 title: 注意事项
-tags: test
+tags: [test]
 categories: hexo
 ---
 
