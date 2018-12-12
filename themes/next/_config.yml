@@ -369,7 +369,7 @@ disqus:
 
 # changyan
 changyan:
-  enable: true
+  enable: false
   appid: cyssm2pXE
   appkey: 06bcb97acdbe621d8c671d2958813a26
 
@@ -378,9 +378,9 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: false
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
+  enable: true
+  appid: hEIrFGlknOi3Eqkakc6brENC-9Nh9j0Va
+  appkey: COHOAGfJ9tQt1dCE1vcej2eh
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # comment box placeholder
