@@ -26,11 +26,15 @@ override: false
 
 # For example, you put your favicons into `hexo-site/source/images` directory.
 # Then need to rename & redefine they on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.
-favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
-  safari_pinned_tab: /images/logo.svg
+favicon: 
+  #small: /images/favicon-16x16-next.png
+  small: /images/favicon.ico
+  #medium: /images/favicon-32x32-next.png
+  medium: /images/favicon.ico
+  #apple_touch_icon: /images/apple-touch-icon-next.png
+  apple_touch_icon: /images/favicon.ico
+  #safari_pinned_tab: /images/logo.svg
+  safari_pinned_tab: /images/favicon.ico
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
@@ -129,6 +133,8 @@ scheme: Pisces
 social:
   GitHub: https://github.com/coulsonz || github
   E-Mail: mailto:191711902@qq.com || envelope
+  CSDN: https://blog.csdn.net/syswar || coffee
+  cnBlogs: https://www.cnblogs.com/syswar || bold
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
@@ -145,8 +151,8 @@ social_icons:
 
 # Blog rolls
 links_icon: link
-links_title: 友情链接 #修改名称
-#links_layout: block
+links_title: 推荐阅读 #修改名称
+links_layout: block
 #links_layout: inline
 links:
   博客园: https://www.cnblogs.com/syswar/
@@ -250,7 +256,7 @@ alipay: /images/alipay.jpg
 
 # Declare license on posts
 post_copyright:
-  enable: true
+  enable: false
   license: CC BY-NC-SA 3.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
@@ -678,7 +684,7 @@ motion:
 fancybox: true
 
 # Progress bar in the top during page loading.
-pace: false
+pace: true
 # Themes list:
 #pace-theme-big-counter
 #pace-theme-bounce
@@ -695,7 +701,7 @@ pace: false
 #pace-theme-minimal
 # For example
 # pace_theme: pace-theme-center-simple
-pace_theme: pace-theme-minimal
+pace_theme: pace-theme-corner-indicator
 
 # Canvas-nest
 canvas_nest: true
@@ -810,7 +816,8 @@ vendors:
 # The end of passage text tips[Self Config]
 passage_end_tag:
   enabled: true
-  
+
+
 # Assets
 css: css
 js: js
