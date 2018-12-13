@@ -52,6 +52,14 @@ index_generator:
   path: ''
   per_page: 10
   order_by: -date
+#pagination
+archive_generator:
+  per_page: 20
+  yearly: true
+  monthly: true
+#pagination
+tag_generator:
+  per_page: 10
   
 # Category & Tag
 default_category: uncategorized
