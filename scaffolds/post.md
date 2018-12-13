@@ -2,6 +2,8 @@
 title: {{ title }}
 date: {{ date }}
 tags: 
-categories: 
-copyright: 
+categories: 未分类
+copyright: true
+top: 
+password: 
 ---

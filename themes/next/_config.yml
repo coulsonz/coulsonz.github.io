@@ -817,7 +817,10 @@ vendors:
 passage_end_tag:
   enabled: true
 
-
+# Online contact 
+daovoice: true
+daovoice_app_id: 83d50655
+  
 # Assets
 css: css
 js: js
