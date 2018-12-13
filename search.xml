@@ -2,8 +2,8 @@
 <search>
   <entry>
     <title><![CDATA[unsorted-test]]></title>
-    <url>%2Fcjpmpnpa10008w0r5sd8j8jq5.html</url>
-    <content type="text"><![CDATA[这是未分类测试页面 这是未分类测试页面 这是未分类测试页面]]></content>
+    <url>%2Fcjpmqvbc20007a8r5cy4mz5w9.html</url>
+    <content type="text"><![CDATA[这是未分类测试页面 这是未分类测试页面 这是未分类测试页面 测试coding.net]]></content>
       <categories>
         <category>unsorted</category>
       </categories>
@@ -13,7 +13,7 @@
   </entry>
   <entry>
     <title><![CDATA[frontend-test]]></title>
-    <url>%2Fcjpmpnpa00007w0r5ojtdkam1.html</url>
+    <url>%2Fcjpmqvbc00005a8r5v9c56p5c.html</url>
     <content type="text"><![CDATA[这是WEB前端测试页面 这是WEB前端测试页面 这是WEB前端测试页面]]></content>
       <categories>
         <category>frontend</category>
@@ -25,7 +25,7 @@
   </entry>
   <entry>
     <title><![CDATA[sql-test]]></title>
-    <url>%2Fcjpmpnp9w0006w0r5q026b96o.html</url>
+    <url>%2Fcjpmqvbc10006a8r51kqn6agk.html</url>
     <content type="text"><![CDATA[这是数据库测试页面 这是数据库测试页面 这是数据库测试页面]]></content>
       <categories>
         <category>sql</category>
@@ -38,7 +38,7 @@
   </entry>
   <entry>
     <title><![CDATA[Java-test]]></title>
-    <url>%2Fcjpmpnp9p0001w0r5i5kp3iq5.html</url>
+    <url>%2Fcjpmqvbbt0001a8r5282225m6.html</url>
     <content type="text"><![CDATA[这是Java测试页面 这是Java测试页面 这是Java测试页面]]></content>
       <categories>
         <category>java</category>
@@ -50,7 +50,7 @@
   </entry>
   <entry>
     <title><![CDATA[置顶-test]]></title>
-    <url>%2Fcjpmpnpa4000cw0r55wup0fpe.html</url>
+    <url>%2Fcjpmqvbc4000ba8r53sv78bj3.html</url>
     <content type="text"><![CDATA[每次换电脑更新博客前，先执行以下步骤 先git remote add origin https://github.com/coulsonz/coulsonz.github.io.git 然后git pull origin hexo最新的hexo文件 执行npm install 编辑、撰写文章或其他博客更新改动 依次执行git add .、git commit -m &#39;back up hexo files&#39;（引号内容可改）、git push指令，保证 hexo 分支版本最新 最后，发布新内容，执行hexo d -g指令]]></content>
       <categories>
         <category>notes</category>
@@ -61,7 +61,7 @@
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <url>%2Fcjpmpnp9t0003w0r51ln9hef1.html</url>
+    <url>%2Fcjpmqvbbw0002a8r5peirjpoo.html</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
       <categories>
         <category>notes</category>
@@ -72,7 +72,7 @@
   </entry>
   <entry>
     <title><![CDATA[文章加密-test]]></title>
-    <url>%2Fcjpmpnpa2000bw0r59crihc4g.html</url>
+    <url>%2Fcjpmqvbc3000aa8r5vr70rc2z.html</url>
     <content type="text"><![CDATA[这是文章加密测试页面 这是文章加密测试页面 这是文章加密测试页面]]></content>
       <categories>
         <category>notes</category>
