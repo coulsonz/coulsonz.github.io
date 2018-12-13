@@ -2,7 +2,9 @@
 title: {{ title }}
 date: {{ date }}
 tags: 
-categories: 未分类
+categories: 
+  - categories
+  - notes
 copyright: true
 top: 
 password: 

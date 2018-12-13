@@ -41,6 +41,13 @@
         {% set itemName = name.toLowerCase() %}
         <li class="menu-item menu-item-{{ itemName | replace(' ', '-') }}">
           <a href="{{ url_for(path.split('||')[0]) | trim }}" rel="section">
+			<!-- 开始判断是否为二级目录 -->
+			{% set tmp = path.split('||')[0] %}
+			{% set t1 = tmp.split('/')[2] %}
+			{% if t1.length>1 %}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			{% endif %}
+			<!-- 结束判断是否为二级目录 -->
             {% if theme.menu_icons.enable %}
               <i class="menu-item-icon fa fa-fw fa-{{ path.split('||')[1] | trim | default('question-circle') }}"></i> <br />
             {% endif %}

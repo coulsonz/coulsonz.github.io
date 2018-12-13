@@ -98,9 +98,13 @@ index_with_subtitle: false
 menu:
   home: / || home
   categories: /categories/ || th
+  java: /categories/java || code
+  sql: /categories/sql || database
+  frontend: /categories/frontend || magic
+  notes: /categories/notes || book
   archives: /archives/ || archive
   tags: /tags/ || tags
-  about: /about/ || user
+#  about: /about/ || user
 #  schedule: /schedule/ || calendar
 #  sitemap: /sitemap.xml || sitemap
 #  commonweal: /404/ || heartbeat
