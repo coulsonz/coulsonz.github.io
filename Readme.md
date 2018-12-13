@@ -8,6 +8,10 @@
    - [x] 随笔目录页面
 
 ---
+**注意：修改hexo目录下配置文件同步至coding.net**
+
+---
+
 **每次换电脑更新博客前，先执行以下步骤**
 
 1. 先`git remote add origin https://github.com/coulsonz/coulsonz.github.io.git`

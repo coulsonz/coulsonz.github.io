@@ -106,3 +106,5 @@ deploy:
   type: git
   repository: https://github.com/coulsonz/coulsonz.github.io.git
   branch: master
+  # repository: https://git.coding.net/syswar/coulsonz.git # bacup to coding.net
+  # branch: master
