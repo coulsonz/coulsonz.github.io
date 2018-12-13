@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.syswar.cc/2018/12/12/Hexo%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2018-12-12T15:49:53.324Z</lastmod>
+    <loc>http://www.syswar.cc/unsorted-test/</loc>
+    <lastmod>2018-12-13T13:03:26.893Z</lastmod>
   </url>  <url>
-    <loc>http://www.syswar.cc/2018/12/12/%E4%BD%A0%E5%A5%BD-Hexo/</loc>
-    <lastmod>2018-12-12T15:49:25.901Z</lastmod>
+    <loc>http://www.syswar.cc/sql-test/</loc>
+    <lastmod>2018-12-13T13:03:07.989Z</lastmod>
   </url>  <url>
-    <loc>http://www.syswar.cc/2018/12/12/hello-world/</loc>
-    <lastmod>2018-12-12T15:49:21.864Z</lastmod>
+    <loc>http://www.syswar.cc/Java-test/</loc>
+    <lastmod>2018-12-13T13:02:59.129Z</lastmod>
   </url>  <url>
-    <loc>http://www.syswar.cc/2018/12/12/newFile/</loc>
-    <lastmod>2018-12-12T15:42:49.297Z</lastmod>
+    <loc>http://www.syswar.cc/frontend-test/</loc>
+    <lastmod>2018-12-13T13:02:43.385Z</lastmod>
+  </url>  <url>
+    <loc>http://www.syswar.cc/%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86-test/</loc>
+    <lastmod>2018-12-13T13:02:37.542Z</lastmod>
+  </url>  <url>
+    <loc>http://www.syswar.cc/%E7%BD%AE%E9%A1%B6-test/</loc>
+    <lastmod>2018-12-13T13:00:17.159Z</lastmod>
+  </url>  <url>
+    <loc>http://www.syswar.cc/hello-world/</loc>
+    <lastmod>2018-12-13T12:34:09.967Z</lastmod>
   </url>
 </urlset>
