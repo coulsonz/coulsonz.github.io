@@ -1,3 +1,12 @@
+
+待开发事项：
+1. 分类目录页面
+	[ ] Java目录页面
+	[ ] SQL目录页面
+	[ ] 前端目录页面
+	[ ] 随笔目录页面
+	
+---
 **每次换电脑更新博客前，先执行以下步骤**
 
 1. 先`git remote add origin https://github.com/coulsonz/coulsonz.github.io.git`
