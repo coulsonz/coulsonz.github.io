@@ -2,7 +2,6 @@
 title: Hello World
 tags: [test]
 categories: 
-  - categories
   - notes
 copyright: true
 top: 

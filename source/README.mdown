@@ -1,4 +1,14 @@
-**每次换电脑更新博客前，先执行以下步骤**
+**常用文件修改路径**
+
+1. 目录菜单和中文翻译
+   - _config.yml主题配置文件：\themes\next\ _config.yml
+   - zh-Hans.yml汉化文件：\themes\next\languages
+
+
+
+---
+
+每次换电脑更新博客前，先执行以下步骤**
 
 1. 先`git remote add origin https://github.com/coulsonz/coulsonz.github.io.git`
 2. 然后`git pull origin hexo`最新的hexo文件

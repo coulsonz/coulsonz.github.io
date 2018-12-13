@@ -1,8 +1,7 @@
 ---
-title: 注意事项
+title: 置顶-test
 tags: [test]
 categories: 
-  - categories
   - notes
 copyright: true
 top: true

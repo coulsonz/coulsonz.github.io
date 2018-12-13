@@ -102,6 +102,7 @@ menu:
   sql: /categories/sql || database
   frontend: /categories/frontend || magic
   notes: /categories/notes || book
+  unsorted: /categories/unsorted || filter
   archives: /archives/ || archive
   tags: /tags/ || tags
 #  about: /about/ || user

@@ -9,12 +9,16 @@ author: 博主
 menu:
   home: 首页
   archives: 归档
+  
   categories: 分类
   java: Java
-  sql: SQL
-  frontend: 前端
+  sql: 数据库
+  frontend: WEB前端
   notes: 随笔
+  unsorted: 未分类
+  
   tags: 标签
+  
   about: 关于
   search: 搜索
   schedule: 日程表

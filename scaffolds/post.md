@@ -3,8 +3,7 @@ title: {{ title }}
 date: {{ date }}
 tags: 
 categories: 
-  - categories
-  - notes
+  - unsorted
 copyright: true
 top: 
 password: 
