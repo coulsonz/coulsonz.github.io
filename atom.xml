@@ -68,9 +68,9 @@
       <category term="frontend" scheme="http://www.syswar.cc/categories/frontend/"/>
     
     
-      <category term="test" scheme="http://www.syswar.cc/tags/test/"/>
-    
       <category term="WEB前端" scheme="http://www.syswar.cc/tags/WEB%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="test" scheme="http://www.syswar.cc/tags/test/"/>
     
   </entry>
   
@@ -130,9 +130,9 @@
       <category term="java" scheme="http://www.syswar.cc/categories/java/"/>
     
     
-      <category term="java" scheme="http://www.syswar.cc/tags/java/"/>
-    
       <category term="test" scheme="http://www.syswar.cc/tags/test/"/>
+    
+      <category term="java" scheme="http://www.syswar.cc/tags/java/"/>
     
   </entry>
   
