@@ -390,9 +390,9 @@ valine:
   appkey: COHOAGfJ9tQt1dCE1vcej2eh
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: Just go go # comment box placeholder
+  placeholder: 说点什么吧…… # comment box placeholder
   avatar: mm # gravatar style
-  guest_info: nick,mail,link # custom comment header
+  guest_info: nick,mail # ,link # custom comment header
   pageSize: 10 # pagination size
 
 
@@ -402,7 +402,7 @@ valine:
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+#livere_uid: MTAyMC80MTYyMi8xODE2OQ==
 
 # Gitment
 # Introduction: https://imsun.net/posts/gitment-introduction/
@@ -530,8 +530,8 @@ vkontakte_api:
 # Star rating support to each article.
 # To get your ID visit https://widgetpack.com
 rating:
-  enable: false
-  id:     #<app_id>
+  enable: true
+  id:     15522
   color:  fc6423
 # ---------------------------------------------------------------
 

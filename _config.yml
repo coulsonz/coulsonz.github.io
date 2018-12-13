@@ -15,7 +15,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://www.syswar.cc
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
@@ -58,7 +58,7 @@ default_category: uncategorized
 category_map:
     
 tag_map:
-    教程: course
+    # 教程: course
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
