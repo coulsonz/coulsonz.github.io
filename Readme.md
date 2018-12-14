@@ -21,8 +21,8 @@
 
 新文章常用技巧：
 
-1. 屏蔽MD解析文章中HTML或JS代码块的功能，使用`{% row %}要屏蔽内容{% endrow %}`
-2. `<!-- more -->`用于在主页隐藏文章内容
+1. 屏蔽MD解析文章中HTML或JS代码块的功能，使用`{% raw %}要屏蔽内容{% endraw %}`
+2. `<!-- more -->`用于在主页隐藏文章内容，参考[Hexo.raw](https://hexo.io/docs/tag-plugins.html#Raw)
 
 ---
 
