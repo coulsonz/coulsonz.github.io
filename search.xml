@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[置顶-test]]></title>
-    <url>%2Fcjpsdhsu6000ex4r5nhspkb6k.html</url>
+    <url>%2F%E7%BD%AE%E9%A1%B6-test.html</url>
     <content type="text"><![CDATA[每次换电脑更新博客前，先执行以下步骤 先git remote add origin https://github.com/coulsonz/coulsonz.github.io.git 然后git pull origin hexo最新的hexo文件 执行npm install 编辑、撰写文章或其他博客更新改动 依次执行git add .、git commit -m &#39;back up hexo files&#39;（引号内容可改）、git push指令，保证 hexo 分支版本最新 最后，发布新内容，执行hexo d -g指令 图片链接测试]]></content>
       <categories>
         <category>notes</category>
@@ -13,8 +13,8 @@
   </entry>
   <entry>
     <title><![CDATA[Java多线程编程核心技术笔录（一）]]></title>
-    <url>%2Fcjpsdhstt0003x4r57xxx7mp4.html</url>
-    <content type="text"><![CDATA[今天分析Thread.currentThread()和This的差异： 创建CountOperate.java文件： 123456789101112131415161718192021package syswar.cc;public class CountOperate extends Thread &#123; public CountOperate() &#123; System.out.println("CountOp-------begin"); System.out.println("Thread.currentThread.getName()="+ Thread.currentThread().getName()); System.out.println("Thread.currentThread.isAlive()="+ Thread.currentThread().isAlive()); System.out.println("this.getname()="+ this.getName()); System.out.println("this.isAlive()="+ this.isAlive()); System.out.println("CountOp-------end"); &#125; @Override public void run() &#123; System.out.println("run------begin"); System.out.println("Thread.currentThread.getName()="+ Thread.currentThread().getName()); System.out.println("Thread.currentThread.isAlive()="+ Thread.currentThread().isAlive()); System.out.println("this.getname()="+ this.getName()); System.out.println("this.isAlive()="+ this.isAlive()); System.out.println("run------end"); &#125;&#125; 创建Run.java文件： 12345678910111213package syswar.cc;public class Run &#123; public static void main(String[] args) &#123; CountOperate c= new CountOperate(); Thread t1 = new Thread(c); System.out.println("main begin t1 isAlive=" + t1.isAlive()); t1.setName("A"); t1.start(); System.out.println("main end t1 isAlive=" + t1.isAlive()); &#125;&#125; 程序运行结果如下： CountOp——-beginThread.currentThread().getName()=mainThread.currentThread().isAlive()=truethis.getname()=Thread-0this.isAlive()=falseCountOp——-endmain begin t1 isAlive=falsemain end t1 isAlive=truerun——beginThread.currentThread().getName()=AThread.currentThread().isAlive()=truethis.getname()=Thread-0this.isAlive()=falseThread.currentThread() == this: falserun——end 通过结合CSDN这篇文章的讲解，我们知道： CountOp-------begin和CountOp-------end之间为构造函数运行结果，由main函数调用并执行，所以Thread.currentThread().getName()=main很好理解。 那这个this是什么？CountOperate的引用，是个线程类，但是这个线程类并没有设置名字，所以Thread默认给了一个Thread-0。 通过源码可以很清楚的知道这点。 123public Thread() &#123; init(null, null, "Thread-" + nextThreadNum(), 0);&#125; 由于只运行了CountOperate构造函数，并未开始执行，因此this.isAlive()=false。 将CountOperate作为参数传给Thread对象并执行start()启动线程，我们直接启动的线程实际上是t1，而CountOperate作为参数将属性Target赋值给Thread，之后Thread的run方法中调用Target.run()；所以Thread.currentThread()是Thread的引用t1，而this依旧是CountOperate的引用，所以不一样，即Thread.currentThread() == this: false；此时this.isAlive()=false即CountOperate.isAlive()=false，它还未真正启动，需要等待t1执行run()方法来启动它。]]></content>
+    <url>%2FJava-MultiThread-Core-Tech-1.html</url>
+    <content type="text"><![CDATA[今天分析Thread.currentThread()和This的差异： 创建CountOperate.java文件： 123456789101112131415161718192021package syswar.cc;public class CountOperate extends Thread &#123; public CountOperate() &#123; System.out.println("CountOp-------begin"); System.out.println("Thread.currentThread.getName()="+ Thread.currentThread().getName()); System.out.println("Thread.currentThread.isAlive()="+ Thread.currentThread().isAlive()); System.out.println("this.getname()="+ this.getName()); System.out.println("this.isAlive()="+ this.isAlive()); System.out.println("CountOp-------end"); &#125; @Override public void run() &#123; System.out.println("run------begin"); System.out.println("Thread.currentThread.getName()="+ Thread.currentThread().getName()); System.out.println("Thread.currentThread.isAlive()="+ Thread.currentThread().isAlive()); System.out.println("this.getname()="+ this.getName()); System.out.println("this.isAlive()="+ this.isAlive()); System.out.println("run------end"); &#125;&#125; 创建Run.java文件： 12345678910111213package syswar.cc;public class Run &#123; public static void main(String[] args) &#123; CountOperate c= new CountOperate(); Thread t1 = new Thread(c); System.out.println("main begin t1 isAlive=" + t1.isAlive()); t1.setName("A"); t1.start(); System.out.println("main end t1 isAlive=" + t1.isAlive()); &#125;&#125; 程序运行结果如下： CountOp——-beginThread.currentThread().getName()=mainThread.currentThread().isAlive()=truethis.getname()=Thread-0this.isAlive()=falseCountOp——-endmain begin t1 isAlive=falsemain end t1 isAlive=truerun——beginThread.currentThread().getName()=AThread.currentThread().isAlive()=truethis.getname()=Thread-0this.isAlive()=falseThread.currentThread() == this: falserun——end 通过结合CSDN这篇文章的讲解，我们知道： CountOp-------begin和CountOp-------end之间为构造函数运行结果，由main函数调用并执行，所以Thread.currentThread().getName()=main很好理解。 那这个this是什么？CountOperate的引用，是个线程类，但是这个线程类并没有设置名字，所以Thread默认给了一个Thread-0。通过源码可以知道它的命名规则。 123public Thread() &#123; init(null, null, "Thread-" + nextThreadNum(), 0);&#125; 由于只运行了CountOperate构造函数，并run()未开始执行，因此this.isAlive()=false。 run-------begin和run-------end之间为构造函数运行结果。 将CountOperate作为参数传给Thread对象并执行start()启动线程，我们直接启动的线程实际上是t1，而CountOperate作为参数将属性Target赋值给Thread，之后Thread的run方法中调用Target.run()； 所以Thread.currentThread()是Thread的引用t1，而this依旧是CountOperate的引用，所以不一样，即Thread.currentThread() == this: false； 此时this.isAlive()=false即CountOperate.isAlive()=false，它还未真正启动，需要等待t1执行run()方法来启动它。]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -25,7 +25,7 @@
   </entry>
   <entry>
     <title><![CDATA[unsorted-test]]></title>
-    <url>%2Fcjpsdhsu8000hx4r536tsxz2p.html</url>
+    <url>%2Funsorted-test.html</url>
     <content type="text"><![CDATA[这是未分类测试页面 这是未分类测试页面 这是未分类测试页面 测试coding.net]]></content>
       <categories>
         <category>unsorted</category>
@@ -36,7 +36,7 @@
   </entry>
   <entry>
     <title><![CDATA[frontend-test]]></title>
-    <url>%2Fcjpsdhsu4000cx4r5bwsued9b.html</url>
+    <url>%2Ffrontend-test.html</url>
     <content type="text"><![CDATA[这是WEB前端测试页面 这是WEB前端测试页面 这是WEB前端测试页面]]></content>
       <categories>
         <category>frontend</category>
@@ -48,7 +48,7 @@
   </entry>
   <entry>
     <title><![CDATA[sql-test]]></title>
-    <url>%2Fcjpsdhsu2000ax4r55195og83.html</url>
+    <url>%2Fsql-test.html</url>
     <content type="text"><![CDATA[这是数据库测试页面 这是数据库测试页面 这是数据库测试页面]]></content>
       <categories>
         <category>sql</category>
@@ -61,7 +61,7 @@
   </entry>
   <entry>
     <title><![CDATA[Java-test]]></title>
-    <url>%2Fcjpsdhstx0006x4r5unm2fu53.html</url>
+    <url>%2FJava-test.html</url>
     <content type="text"><![CDATA[这是Java测试页面 这是Java测试页面 这是Java测试页面]]></content>
       <categories>
         <category>java</category>
@@ -73,7 +73,7 @@
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <url>%2Fcjpsdhsu10009x4r5kmq37x09.html</url>
+    <url>%2Fhello-world.html</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
       <categories>
         <category>notes</category>
@@ -84,7 +84,7 @@
   </entry>
   <entry>
     <title><![CDATA[Hexo之NexT主题的分类菜单缩进]]></title>
-    <url>%2Fcjpsdhste0001x4r5rz3d2pb5.html</url>
+    <url>%2FHexo%E4%B9%8BNexT%E4%B8%BB%E9%A2%98%E7%9A%84%E5%88%86%E7%B1%BB%E8%8F%9C%E5%8D%95%E7%BC%A9%E8%BF%9B.html</url>
     <content type="text"><![CDATA[以下代码只针对二级目录进行了缩进，如果要对更深层次缩进，请自行修改。 修改的文件路径为：themes\next\layout\_partials\header.swig， 打开后搜索% if theme.menu %即可找到位置。 添加代码在开始判断是否为二级目录和结束判断是否为二级目录之间： 1234567891011121314151617181920&#123;% if theme.menu %&#125; &lt;ul id="menu" class="menu"&gt; &#123;% for name, path in theme.menu %&#125; &#123;% set itemName = name.toLowerCase() %&#125; &lt;li class="menu-item menu-item-&#123;&#123; itemName | replace(' ', '-') &#125;&#125;"&gt; &lt;a href="&#123;&#123; url_for(path.split('||')[0]) | trim &#125;&#125;" rel="section"&gt; &lt;!-- 开始判断是否为二级目录 --&gt; &#123;% set tmp = path.split('||')[0] %&#125; &#123;% set t1 = tmp.split('/')[2] %&#125; &#123;% if t1.length&gt;1 %&#125; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &#123;% endif %&#125; &lt;!-- 结束判断是否为二级目录 --&gt; &#123;% if theme.menu_icons.enable %&#125; &lt;i class="menu-item-icon fa fa-fw fa-&#123;&#123; path.split('||')[1] | trim | default('question-circle') &#125;&#125;"&gt;&lt;/i&gt; &lt;br /&gt; &#123;% endif %&#125; &#123;&#123; __('menu.' + name) | replace('menu.', '') &#125;&#125; &lt;/a&gt; &lt;/li&gt; &#123;% endfor %&#125;]]></content>
       <categories>
         <category>notes</category>
@@ -92,7 +92,7 @@
   </entry>
   <entry>
     <title><![CDATA[文章加密-test]]></title>
-    <url>%2Fcjpsdhsua000kx4r5pw78wd3v.html</url>
+    <url>%2F%E6%96%87%E7%AB%A0%E5%8A%A0%E5%AF%86-test.html</url>
     <content type="text"><![CDATA[这是文章加密测试页面 这是文章加密测试页面 这是文章加密测试页面]]></content>
       <categories>
         <category>notes</category>

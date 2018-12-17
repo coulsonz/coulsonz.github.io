@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="test,WEB前端,">
+  <meta name="keywords" content="java,multiThread,">
 
 
 
@@ -97,18 +97,18 @@
 
 
 
-<meta name="description" content="这是WEB前端测试页面 这是WEB前端测试页面 这是WEB前端测试页面">
-<meta name="keywords" content="test,WEB前端">
+<meta name="description" content="今天分析Thread.currentThread()和This的差异： 创建CountOperate.java文件： 123456789101112131415161718192021package syswar.cc;public class CountOperate extends Thread &amp;#123;	public CountOperate() &amp;#123;		System.out.p">
+<meta name="keywords" content="java,multiThread">
 <meta property="og:type" content="article">
-<meta property="og:title" content="frontend-test">
-<meta property="og:url" content="http://www.syswar.cc/cjpsdhsu4000cx4r5bwsued9b.html">
+<meta property="og:title" content="Java多线程编程核心技术笔录（一）">
+<meta property="og:url" content="http://www.syswar.cc/Java-MultiThread-Core-Tech-1.html">
 <meta property="og:site_name" content="Coulson Zhang`s Blog">
-<meta property="og:description" content="这是WEB前端测试页面 这是WEB前端测试页面 这是WEB前端测试页面">
+<meta property="og:description" content="今天分析Thread.currentThread()和This的差异： 创建CountOperate.java文件： 123456789101112131415161718192021package syswar.cc;public class CountOperate extends Thread &amp;#123;	public CountOperate() &amp;#123;		System.out.p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-13T13:02:43.385Z">
+<meta property="og:updated_time" content="2018-12-17T13:54:52.907Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="frontend-test">
-<meta name="twitter:description" content="这是WEB前端测试页面 这是WEB前端测试页面 这是WEB前端测试页面">
+<meta name="twitter:title" content="Java多线程编程核心技术笔录（一）">
+<meta name="twitter:description" content="今天分析Thread.currentThread()和This的差异： 创建CountOperate.java文件： 123456789101112131415161718192021package syswar.cc;public class CountOperate extends Thread &amp;#123;	public CountOperate() &amp;#123;		System.out.p">
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="http://www.syswar.cc/cjpsdhsu4000cx4r5bwsued9b.html">
+  <link rel="canonical" href="http://www.syswar.cc/Java-MultiThread-Core-Tech-1.html">
 
 
 
@@ -154,7 +154,7 @@
 
 
 <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
-  <title>frontend-test | Coulson Zhang`s Blog</title>
+  <title>Java多线程编程核心技术笔录（一） | Coulson Zhang`s Blog</title>
   
 
 
@@ -430,7 +430,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.syswar.cc/cjpsdhsu4000cx4r5bwsued9b.html">
+    <link itemprop="mainEntityOfPage" href="http://www.syswar.cc/Java-MultiThread-Core-Tech-1.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Coulson Zhang">
@@ -447,10 +447,14 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">frontend-test</h1>
+          <h1 class="post-title" itemprop="name headline">Java多线程编程核心技术笔录（一）</h1>
         
 
         <div class="post-meta">
+			
+			  <i class="fa fa-thumb-tack"></i>
+			  <font color="7D26CD">置顶</font>
+			  <span class="post-meta-divider">|</span>
 			
           <span class="post-time">
             
@@ -460,8 +464,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-13T20:50:12+08:00">
-                2018-12-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T21:19:35+08:00">
+                2018-12-17
               </time>
             
 
@@ -476,8 +480,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-13T21:02:43+08:00">
-                2018-12-13
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-17T21:54:52+08:00">
+                2018-12-17
               </time>
             
           </span>
@@ -495,8 +499,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/frontend/" itemprop="url" rel="index">
-                    <span itemprop="name">frontend</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -513,8 +517,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/cjpsdhsu4000cx4r5bwsued9b.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/cjpsdhsu4000cx4r5bwsued9b.html" itemprop="commentCount"></span>
+                <a href="/Java-MultiThread-Core-Tech-1.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Java-MultiThread-Core-Tech-1.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -541,7 +545,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  27 字
+                  481 字
                 </span>
               
 
@@ -557,7 +561,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -578,9 +582,26 @@
       
 
       
-        <p>这是WEB前端测试页面</p>
-<p>这是WEB前端测试页面</p>
-<p>这是WEB前端测试页面</p>
+        <p>今天分析Thread.currentThread()和This的差异：</p>
+<p>创建CountOperate.java文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> syswar.cc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountOperate</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CountOperate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"CountOp-------begin"</span>);</span><br><span class="line">		System.out.println(<span class="string">"Thread.currentThread.getName()="</span>+ Thread.currentThread().getName());</span><br><span class="line">		System.out.println(<span class="string">"Thread.currentThread.isAlive()="</span>+ Thread.currentThread().isAlive());</span><br><span class="line">		System.out.println(<span class="string">"this.getname()="</span>+ <span class="keyword">this</span>.getName());</span><br><span class="line">		System.out.println(<span class="string">"this.isAlive()="</span>+ <span class="keyword">this</span>.isAlive());</span><br><span class="line">		System.out.println(<span class="string">"CountOp-------end"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"run------begin"</span>);</span><br><span class="line">		System.out.println(<span class="string">"Thread.currentThread.getName()="</span>+ Thread.currentThread().getName());</span><br><span class="line">		System.out.println(<span class="string">"Thread.currentThread.isAlive()="</span>+ Thread.currentThread().isAlive());</span><br><span class="line">		System.out.println(<span class="string">"this.getname()="</span>+ <span class="keyword">this</span>.getName());</span><br><span class="line">		System.out.println(<span class="string">"this.isAlive()="</span>+ <span class="keyword">this</span>.isAlive());</span><br><span class="line">		System.out.println(<span class="string">"run------end"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建Run.java文件：</p>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> syswar.cc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		CountOperate c= <span class="keyword">new</span> CountOperate();</span><br><span class="line">		Thread t1 = <span class="keyword">new</span> Thread(c);</span><br><span class="line">		System.out.println(<span class="string">"main begin t1 isAlive="</span> + t1.isAlive());</span><br><span class="line">		t1.setName(<span class="string">"A"</span>);</span><br><span class="line">		t1.start();</span><br><span class="line">		System.out.println(<span class="string">"main end t1 isAlive="</span> + t1.isAlive());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序运行结果如下：</p>
+<blockquote>
+<p>CountOp——-begin<br>Thread.currentThread().getName()=main<br>Thread.currentThread().isAlive()=true<br>this.getname()=Thread-0<br>this.isAlive()=false<br>CountOp——-end<br>main begin t1 isAlive=false<br>main end t1 isAlive=true<br>run——begin<br>Thread.currentThread().getName()=A<br>Thread.currentThread().isAlive()=true<br>this.getname()=Thread-0<br>this.isAlive()=false<br>Thread.currentThread() == this: false<br>run——end</p>
+</blockquote>
+<p>通过结合<a href="https://blog.csdn.net/yezis/article/details/57513130" target="_blank" rel="noopener">CSDN这篇文章</a>的讲解，我们知道：</p>
+<p><code>CountOp-------begin</code>和<code>CountOp-------end</code>之间为构造函数运行结果，由main函数调用并执行，所以<code>Thread.currentThread().getName()=main</code>很好理解。</p>
+<p>那这个this是什么？CountOperate的引用，是个线程类，但是这个线程类并没有设置名字，所以Thread默认给了一个Thread-0。通过源码可以知道它的命名规则。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	init(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="string">"Thread-"</span> + nextThreadNum(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于只运行了CountOperate构造函数，并run()未开始执行，因此<code>this.isAlive()=false</code>。</p>
+<hr>
+<p><code>run-------begin</code>和<code>run-------end</code>之间为构造函数运行结果。</p>
+<p>将CountOperate作为参数传给Thread对象并执行start()启动线程，我们直接启动的线程实际上是t1，而CountOperate作为参数将属性Target赋值给Thread，之后Thread的run方法中调用Target.run()；</p>
+<p>所以<code>Thread.currentThread()</code>是Thread的引用t1，而this依旧是<code>CountOperate</code>的引用，所以不一样，即<code>Thread.currentThread() == this: false</code>；</p>
+<p>此时<code>this.isAlive()=false</code>即<code>CountOperate.isAlive()=false</code>，它还未真正启动，需要等待t1执行run()方法来启动它。</p>
 
       
     </div>
@@ -608,12 +629,12 @@
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <p style="text-align:center;color: red;font-size:16px;">转载请保留原文链接及作者</p>
-  <p><span>本文标题:</span><a href="/cjpsdhsu4000cx4r5bwsued9b.html">frontend-test</a></p>
+  <p><span>本文标题:</span><a href="/Java-MultiThread-Core-Tech-1.html">Java多线程编程核心技术笔录（一）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Coulson Zhang 的个人博客">Coulson Zhang</a></p>
-  <p><span>发布时间:</span>2018年12月13日 - 20:50</p>
-  <p><span>最后更新:</span>2018年12月13日 - 21:02</p>
-  <p><span>原始链接:</span><a href="/cjpsdhsu4000cx4r5bwsued9b.html" title="frontend-test">http://www.syswar.cc/cjpsdhsu4000cx4r5bwsued9b.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.syswar.cc/cjpsdhsu4000cx4r5bwsued9b.html" aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年12月17日 - 21:19</p>
+  <p><span>最后更新:</span>2018年12月17日 - 21:54</p>
+  <p><span>原始链接:</span><a href="/Java-MultiThread-Core-Tech-1.html" title="Java多线程编程核心技术笔录（一）">http://www.syswar.cc/Java-MultiThread-Core-Tech-1.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.syswar.cc/Java-MultiThread-Core-Tech-1.html" aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a></p>  
 </div>
@@ -673,9 +694,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/test/" rel="tag"><i class="fa fa-tag"></i> test</a>
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
-            <a href="/tags/WEB前端/" rel="tag"><i class="fa fa-tag"></i> WEB前端</a>
+            <a href="/tags/multiThread/" rel="tag"><i class="fa fa-tag"></i> multiThread</a>
           
         </div>
       
@@ -700,8 +721,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/cjpsdhsu2000ax4r55195og83.html" rel="next" title="sql-test">
-                <i class="fa fa-chevron-left"></i> sql-test
+              <a href="/unsorted-test.html" rel="next" title="unsorted-test">
+                <i class="fa fa-chevron-left"></i> unsorted-test
               </a>
             
           </div>
@@ -710,8 +731,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/cjpsdhsu8000hx4r536tsxz2p.html" rel="prev" title="unsorted-test">
-                unsorted-test <i class="fa fa-chevron-right"></i>
+              <a href="/置顶-test.html" rel="prev" title="置顶-test">
+                置顶-test <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
