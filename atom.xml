@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.syswar.cc/"/>
-  <updated>2018-12-13T15:14:01.994Z</updated>
+  <updated>2018-12-17T13:45:48.586Z</updated>
   <id>http://www.syswar.cc/</id>
   
   <author>
@@ -17,9 +17,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>置顶-test</title>
+    <link href="http://www.syswar.cc/cjpsdhsu6000ex4r5nhspkb6k.html"/>
+    <id>http://www.syswar.cc/cjpsdhsu6000ex4r5nhspkb6k.html</id>
+    <published>2018-12-17T13:45:48.586Z</published>
+    <updated>2018-12-17T13:45:48.586Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>每次换电脑更新博客前，先执行以下步骤</strong></p><ol><li>先<code>git remote add origin https://github.com/coulsonz/coulsonz.github.io.git</code></li><li>然后<code>git pull origin hexo</code>最新的hexo文件</li><li>执行<code>npm install</code></li><li>编辑、撰写文章或其他博客更新改动</li><li>依次执行<code>git add .</code>、<code>git commit -m &#39;back up hexo files&#39;</code>（引号内容可改）、<code>git push</code>指令，保证 hexo 分支版本最新</li><li>最后，发布新内容，执行<code>hexo d -g</code>指令</li></ol><p>图片链接测试</p><p><img src="http://wx2.sinaimg.cn/mw690/c24d7189ly1fy9sos7nvkj21c00u01eg.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;每次换电脑更新博客前，先执行以下步骤&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先&lt;code&gt;git remote add origin https://github.com/coulsonz/coulsonz.github.io.git&lt;/code&gt;&lt;/
+      
+    
+    </summary>
+    
+      <category term="notes" scheme="http://www.syswar.cc/categories/notes/"/>
+    
+    
+      <category term="test" scheme="http://www.syswar.cc/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java多线程编程核心技术笔录（一）</title>
+    <link href="http://www.syswar.cc/cjpsdhstt0003x4r57xxx7mp4.html"/>
+    <id>http://www.syswar.cc/cjpsdhstt0003x4r57xxx7mp4.html</id>
+    <published>2018-12-17T13:19:35.000Z</published>
+    <updated>2018-12-17T13:45:32.006Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天分析Thread.currentThread()和This的差异：</p><p>创建CountOperate.java文件：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> syswar.cc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountOperate</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">CountOperate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">"CountOp-------begin"</span>);</span><br><span class="line">System.out.println(<span class="string">"Thread.currentThread.getName()="</span>+ Thread.currentThread().getName());</span><br><span class="line">System.out.println(<span class="string">"Thread.currentThread.isAlive()="</span>+ Thread.currentThread().isAlive());</span><br><span class="line">System.out.println(<span class="string">"this.getname()="</span>+ <span class="keyword">this</span>.getName());</span><br><span class="line">System.out.println(<span class="string">"this.isAlive()="</span>+ <span class="keyword">this</span>.isAlive());</span><br><span class="line">System.out.println(<span class="string">"CountOp-------end"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="string">"run------begin"</span>);</span><br><span class="line">System.out.println(<span class="string">"Thread.currentThread.getName()="</span>+ Thread.currentThread().getName());</span><br><span class="line">System.out.println(<span class="string">"Thread.currentThread.isAlive()="</span>+ Thread.currentThread().isAlive());</span><br><span class="line">System.out.println(<span class="string">"this.getname()="</span>+ <span class="keyword">this</span>.getName());</span><br><span class="line">System.out.println(<span class="string">"this.isAlive()="</span>+ <span class="keyword">this</span>.isAlive());</span><br><span class="line">System.out.println(<span class="string">"run------end"</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>创建Run.java文件：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> syswar.cc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">CountOperate c= <span class="keyword">new</span> CountOperate();</span><br><span class="line">Thread t1 = <span class="keyword">new</span> Thread(c);</span><br><span class="line">System.out.println(<span class="string">"main begin t1 isAlive="</span> + t1.isAlive());</span><br><span class="line">t1.setName(<span class="string">"A"</span>);</span><br><span class="line">t1.start();</span><br><span class="line">System.out.println(<span class="string">"main end t1 isAlive="</span> + t1.isAlive());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>程序运行结果如下：</p><blockquote><p>CountOp——-begin<br>Thread.currentThread().getName()=main<br>Thread.currentThread().isAlive()=true<br>this.getname()=Thread-0<br>this.isAlive()=false<br>CountOp——-end<br>main begin t1 isAlive=false<br>main end t1 isAlive=true<br>run——begin<br>Thread.currentThread().getName()=A<br>Thread.currentThread().isAlive()=true<br>this.getname()=Thread-0<br>this.isAlive()=false<br>Thread.currentThread() == this: false<br>run——end</p></blockquote><p>通过结合<a href="https://blog.csdn.net/yezis/article/details/57513130" target="_blank" rel="noopener">CSDN这篇文章</a>的讲解，我们知道：</p><p><code>CountOp-------begin</code>和<code>CountOp-------end</code>之间为构造函数运行结果，由main函数调用并执行，所以<code>Thread.currentThread().getName()=main</code>很好理解。</p><p>那这个this是什么？CountOperate的引用，是个线程类，但是这个线程类并没有设置名字，所以Thread默认给了一个Thread-0。</p><p>通过源码可以很清楚的知道这点。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">init(<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="string">"Thread-"</span> + nextThreadNum(), <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>由于只运行了CountOperate构造函数，并未开始执行，因此<code>this.isAlive()=false</code>。</p><hr><p>将CountOperate作为参数传给Thread对象并执行start()启动线程，我们直接启动的线程实际上是t1，而CountOperate作为参数将属性Target赋值给Thread，之后Thread的run方法中调用Target.run()；所以<code>Thread.currentThread()</code>是Thread的引用t1，而this依旧是<code>CountOperate</code>的引用，所以不一样，即<code>Thread.currentThread() == this: false</code>；此时<code>this.isAlive()=false</code>即<code>CountOperate.isAlive()=false</code>，它还未真正启动，需要等待t1执行run()方法来启动它。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天分析Thread.currentThread()和This的差异：&lt;/p&gt;
+&lt;p&gt;创建CountOperate.java文件：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.syswar.cc/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://www.syswar.cc/tags/java/"/>
+    
+      <category term="multiThread" scheme="http://www.syswar.cc/tags/multiThread/"/>
+    
+  </entry>
+  
+  <entry>
     <title>unsorted-test</title>
-    <link href="http://www.syswar.cc/cjpmqvbc20007a8r5cy4mz5w9.html"/>
-    <id>http://www.syswar.cc/cjpmqvbc20007a8r5cy4mz5w9.html</id>
+    <link href="http://www.syswar.cc/cjpsdhsu8000hx4r536tsxz2p.html"/>
+    <id>http://www.syswar.cc/cjpsdhsu8000hx4r536tsxz2p.html</id>
     <published>2018-12-13T12:55:37.000Z</published>
     <updated>2018-12-13T15:14:01.994Z</updated>
     
@@ -47,8 +103,8 @@
   
   <entry>
     <title>frontend-test</title>
-    <link href="http://www.syswar.cc/cjpmqvbc00005a8r5v9c56p5c.html"/>
-    <id>http://www.syswar.cc/cjpmqvbc00005a8r5v9c56p5c.html</id>
+    <link href="http://www.syswar.cc/cjpsdhsu4000cx4r5bwsued9b.html"/>
+    <id>http://www.syswar.cc/cjpsdhsu4000cx4r5bwsued9b.html</id>
     <published>2018-12-13T12:50:12.000Z</published>
     <updated>2018-12-13T13:02:43.385Z</updated>
     
@@ -77,8 +133,8 @@
   
   <entry>
     <title>sql-test</title>
-    <link href="http://www.syswar.cc/cjpmqvbc10006a8r51kqn6agk.html"/>
-    <id>http://www.syswar.cc/cjpmqvbc10006a8r51kqn6agk.html</id>
+    <link href="http://www.syswar.cc/cjpsdhsu2000ax4r55195og83.html"/>
+    <id>http://www.syswar.cc/cjpsdhsu2000ax4r55195og83.html</id>
     <published>2018-12-13T12:50:02.000Z</published>
     <updated>2018-12-13T13:03:07.989Z</updated>
     
@@ -109,8 +165,8 @@
   
   <entry>
     <title>Java-test</title>
-    <link href="http://www.syswar.cc/cjpmqvbbt0001a8r5282225m6.html"/>
-    <id>http://www.syswar.cc/cjpmqvbbt0001a8r5282225m6.html</id>
+    <link href="http://www.syswar.cc/cjpsdhstx0006x4r5unm2fu53.html"/>
+    <id>http://www.syswar.cc/cjpsdhstx0006x4r5unm2fu53.html</id>
     <published>2018-12-13T12:36:35.000Z</published>
     <updated>2018-12-13T13:02:59.129Z</updated>
     
@@ -138,36 +194,9 @@
   </entry>
   
   <entry>
-    <title>置顶-test</title>
-    <link href="http://www.syswar.cc/cjpmqvbc4000ba8r53sv78bj3.html"/>
-    <id>http://www.syswar.cc/cjpmqvbc4000ba8r53sv78bj3.html</id>
-    <published>2018-12-13T11:25:31.030Z</published>
-    <updated>2018-12-13T13:00:17.159Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>每次换电脑更新博客前，先执行以下步骤</strong></p><ol><li>先<code>git remote add origin https://github.com/coulsonz/coulsonz.github.io.git</code></li><li>然后<code>git pull origin hexo</code>最新的hexo文件</li><li>执行<code>npm install</code></li><li>编辑、撰写文章或其他博客更新改动</li><li>依次执行<code>git add .</code>、<code>git commit -m &#39;back up hexo files&#39;</code>（引号内容可改）、<code>git push</code>指令，保证 hexo 分支版本最新</li><li>最后，发布新内容，执行<code>hexo d -g</code>指令</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;每次换电脑更新博客前，先执行以下步骤&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;先&lt;code&gt;git remote add origin https://github.com/coulsonz/coulsonz.github.io.git&lt;/code&gt;&lt;/
-      
-    
-    </summary>
-    
-      <category term="notes" scheme="http://www.syswar.cc/categories/notes/"/>
-    
-    
-      <category term="test" scheme="http://www.syswar.cc/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Hello World</title>
-    <link href="http://www.syswar.cc/cjpmqvbbw0002a8r5peirjpoo.html"/>
-    <id>http://www.syswar.cc/cjpmqvbbw0002a8r5peirjpoo.html</id>
+    <link href="http://www.syswar.cc/cjpsdhsu10009x4r5kmq37x09.html"/>
+    <id>http://www.syswar.cc/cjpsdhsu10009x4r5kmq37x09.html</id>
     <published>2018-12-13T11:25:31.028Z</published>
     <updated>2018-12-13T12:34:09.967Z</updated>
     
@@ -189,9 +218,32 @@
   </entry>
   
   <entry>
+    <title>Hexo之NexT主题的分类菜单缩进</title>
+    <link href="http://www.syswar.cc/cjpsdhste0001x4r5rz3d2pb5.html"/>
+    <id>http://www.syswar.cc/cjpsdhste0001x4r5rz3d2pb5.html</id>
+    <published>2018-12-13T08:56:13.000Z</published>
+    <updated>2018-12-17T13:45:48.585Z</updated>
+    
+    <content type="html"><![CDATA[<p>以下代码只针对二级目录进行了缩进，如果要对更深层次缩进，请自行修改。</p><p>修改的文件路径为：<code>themes\next\layout\_partials\header.swig</code>，</p><p>打开后搜索<code>% if theme.menu %</code>即可找到位置。</p><p>添加代码在<code>开始判断是否为二级目录</code>和<code>结束判断是否为二级目录</code>之间：</p><a id="more"></a><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> theme.menu %&#125;</span><br><span class="line">  &lt;ul id=<span class="string">"menu"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"menu"</span>&gt;</span><br><span class="line">    &#123;% <span class="keyword">for</span> name, path <span class="keyword">in</span> theme.menu %&#125;</span><br><span class="line">      &#123;% set itemName = name.toLowerCase() %&#125;</span><br><span class="line">      &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"menu-item menu-item-&#123;&#123; itemName | replace(' ', '-') &#125;&#125;"</span>&gt;</span><br><span class="line">        &lt;a href=<span class="string">"&#123;&#123; url_for(path.split('||')[0]) | trim &#125;&#125;"</span> rel=<span class="string">"section"</span>&gt;</span><br><span class="line">&lt;!-- 开始判断是否为二级目录 --&gt;</span><br><span class="line">&#123;% set tmp = path.split(<span class="string">'||'</span>)[<span class="number">0</span>] %&#125;</span><br><span class="line">&#123;% set t1 = tmp.split(<span class="string">'/'</span>)[<span class="number">2</span>] %&#125;</span><br><span class="line">&#123;% <span class="keyword">if</span> t1.length&gt;<span class="number">1</span> %&#125;</span><br><span class="line">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&lt;!-- 结束判断是否为二级目录 --&gt;</span><br><span class="line">          &#123;% <span class="keyword">if</span> theme.menu_icons.enable %&#125;</span><br><span class="line">            &lt;i <span class="class"><span class="keyword">class</span></span>=<span class="string">"menu-item-icon fa fa-fw fa-&#123;&#123; path.split('||')[1] | trim | default('question-circle') &#125;&#125;"</span>&gt;&lt;/i&gt; &lt;br /&gt;</span><br><span class="line">          &#123;% endif %&#125;</span><br><span class="line">          &#123;&#123; __(<span class="string">'menu.'</span> + name) | replace(<span class="string">'menu.'</span>, <span class="string">''</span>) &#125;&#125;</span><br><span class="line">        &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>li&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以下代码只针对二级目录进行了缩进，如果要对更深层次缩进，请自行修改。&lt;/p&gt;
+&lt;p&gt;修改的文件路径为：&lt;code&gt;themes\next\layout\_partials\header.swig&lt;/code&gt;，&lt;/p&gt;
+&lt;p&gt;打开后搜索&lt;code&gt;% if theme.menu %&lt;/code&gt;即可找到位置。&lt;/p&gt;
+&lt;p&gt;添加代码在&lt;code&gt;开始判断是否为二级目录&lt;/code&gt;和&lt;code&gt;结束判断是否为二级目录&lt;/code&gt;之间：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="notes" scheme="http://www.syswar.cc/categories/notes/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>文章加密-test</title>
-    <link href="http://www.syswar.cc/cjpmqvbc3000aa8r5vr70rc2z.html"/>
-    <id>http://www.syswar.cc/cjpmqvbc3000aa8r5vr70rc2z.html</id>
+    <link href="http://www.syswar.cc/cjpsdhsua000kx4r5pw78wd3v.html"/>
+    <id>http://www.syswar.cc/cjpsdhsua000kx4r5pw78wd3v.html</id>
     <published>2018-12-12T07:11:04.000Z</published>
     <updated>2018-12-13T13:02:37.542Z</updated>
     
