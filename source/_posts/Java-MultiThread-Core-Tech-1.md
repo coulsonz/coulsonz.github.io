@@ -39,6 +39,8 @@ public class CountOperate extends Thread {
 
 创建Run.java文件：
 
+<!-- more -->
+
 ```java
 package syswar.cc;
 
@@ -77,9 +79,7 @@ public class Run {
 
 `CountOp-------begin`和`CountOp-------end`之间为构造函数运行结果，由main函数调用并执行，所以`Thread.currentThread().getName()=main`很好理解。
 
-那这个this是什么？CountOperate的引用，是个线程类，但是这个线程类并没有设置名字，所以Thread默认给了一个Thread-0。
-
-通过源码可以很清楚的知道这点。
+那这个this是什么？CountOperate的引用，是个线程类，但是这个线程类并没有设置名字，所以Thread默认给了一个Thread-0。通过源码可以知道它的命名规则。
 
 ```java
 public Thread() {
@@ -87,8 +87,14 @@ public Thread() {
 }
 ```
 
-由于只运行了CountOperate构造函数，并未开始执行，因此`this.isAlive()=false`。
+由于只运行了CountOperate构造函数，并run()未开始执行，因此`this.isAlive()=false`。
 
 ---
 
-将CountOperate作为参数传给Thread对象并执行start()启动线程，我们直接启动的线程实际上是t1，而CountOperate作为参数将属性Target赋值给Thread，之后Thread的run方法中调用Target.run()；所以`Thread.currentThread()`是Thread的引用t1，而this依旧是`CountOperate`的引用，所以不一样，即`Thread.currentThread() == this: false`；此时`this.isAlive()=false`即`CountOperate.isAlive()=false`，它还未真正启动，需要等待t1执行run()方法来启动它。
+`run-------begin`和`run-------end`之间为构造函数运行结果。
+
+将CountOperate作为参数传给Thread对象并执行start()启动线程，我们直接启动的线程实际上是t1，而CountOperate作为参数将属性Target赋值给Thread，之后Thread的run方法中调用Target.run()；
+
+所以`Thread.currentThread()`是Thread的引用t1，而this依旧是`CountOperate`的引用，所以不一样，即`Thread.currentThread() == this: false`；
+
+此时`this.isAlive()=false`即`CountOperate.isAlive()=false`，它还未真正启动，需要等待t1执行run()方法来启动它。
