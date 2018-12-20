@@ -101,3 +101,39 @@ docker run -d -p 8080:8080 --name Iubuntu coulson/tomcat:v1
 > coulson/tomcat:v1后面的镜像名版本v1，若在第五步未指定tag，则不需要带；否则必须带着tag。
 
 在浏览器访问http://192.168.24.132:8080/即可看到Tomcat默认页。
+
+七、停止Tomcat容器
+
+```shell
+# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                       PORTS               NAMES
+c810703242f7        coulson/tomcat:v1   "usr/local/soft/tomc…"   20 minutes ago      Exited (143) 5 seconds ago                       Iubuntu3
+# docker stop c810
+```
+
+八、移除Tomcat容器
+
+```shell
+# docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                       PORTS               NAMES
+c810703242f7        coulson/tomcat:v1   "usr/local/soft/tomc…"   20 minutes ago      Exited (143) 5 seconds ago                       Iubuntu3
+071730e664f8        hello-world         "/hello"                 5 hours ago         Exited (0) 5 hours ago  
+# docker rm c810
+```
+
+九、移除镜像
+
+```shell
+# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+coulson/tomcat      v1                  795e6cc94ef7        2 hours ago         496MB
+ubuntu              latest              93fd78260bd1        4 weeks ago         86.2MB
+# docker rmi 795e
+```
+
+十、挂载网站目录
+
+```shell
+docker run -d -p 8080:8080 -v /home/coulson/root/webapps/:/usr/local/soft/apache-tomcat-8.5.37/webapps/ --name Iubuntu3 coulson/tomcat:v1
+```
+
