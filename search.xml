@@ -13,6 +13,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[问与答]]></title>
+    <url>%2FQ-And-A.html</url>
+    <content type="text"><![CDATA[Q1. 以下代码有逸出，求解？书中说道：当ThisEscape发布EventListener时，它也无条件地发布了封装ThisEscape的实例，因为内引类的实例包含了对封装实例隐含的引用。 1234567891011public class ThisEscape &#123; public ThisEscape(EventSource source) &#123; source.registerListener &#123; new EvenetListener() &#123; public void onEvent(Event e) &#123; doSomething(e); &#125; &#125; &#125; &#125;&#125; 使用工厂方法防止this引用在构造期间逸出 1234567891011121314151617public class SafeListener &#123; private final EvenetListener listener; private SafeListener() &#123; listener = new EventListener() &#123; public void onEvent(Event e) &#123; doSomething(e); &#125; &#125; &#125; public static SafeListener newInstance(EventSource source) &#123; SafeListener safe = new SafeListener(); source.registerListener(safe.listener); return safe; &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Ubuntu系统中Docker安装Tomcat]]></title>
     <url>%2FDocker-install-Tomcat.html</url>
     <content type="text"><![CDATA[Docker构建镜像的方法主要有两种： 使用docker commit命令; 使用docker build命令和Dockerfile文件（更为强大、灵活和常用）; 一、准备centos镜像 1docker pull ubuntu 二、下载jdk、tomcat安装包，上传/usr/local/soft目录下 jdk1.8下载：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.htmltomcat8下载：https://tomcat.apache.org/download-80.cgi 三、解压，创建Dockerfile文件 12345tar -zxvf apache-tomcat-8.5.31.tar.gz #解压tomcattar -zxvf jdk-8u171-linux-x64.tar.gz #解压jdkrm -rf apache-tomcat-8.5.31.tar.gz #删除安装包rm -rf jdk-8u171-linux-x64.tar.gz #删除安装包touch Dockerfile #创建文件 四、编写Dockerfile文件 123456789101112131415161718#指定操作的镜像，此处镜像名必须小写FROM ubuntu# 维护者信息MAINTAINER coulson#执行命令：创建目录RUN mkdir -p /usr/local/soft#将jdk1.8.0_171添加到镜像centos的/usr/local/soft/目录下，并命名为jdkADD jdk1.8.0_171 /usr/local/soft/jdk#将apache-tomcat-8.5.31添加到镜像centos的/usr/local/soft/目录下，并命名为tomcatADD apache-tomcat-8.5.31 /usr/local/soft/tomcat#添加环境变量ENV JAVA_HOME /usr/local/soft/jdkENV CATALINA_HOME /usr/local/soft/tomcatENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin#暴露8080端口EXPOSE 8080#启动时运行tomcatCMD ["/usr/local/soft/tomcat/bin/catalina.sh","run"] 说明： FROM : 指定基础镜像，并且必须是第一条指令 MAINTAINER ： 指定作者 RUN : 运行指定的命令 ADD : 复制命令，把文件复制到镜像中。 ENV : 设置环境变量 EXPOSE : 功能为暴漏容器运行时的监听端口给外部 CMD : 指定容器启动时运行的命令 五、构建Docker镜像 1docker build -t coulson/tomcat:v1 . -t 设置tag名称, 命名规则registry/image:tag（若不添加版本号,默认latest）. 表示使用当前目录下的Dockerfile文件（注意语句后面有一个点） 六、启动镜像，访问 1docker run -d -p 8080:8080 --name Iubuntu coulson/tomcat:v1 说明： -d 后台运行 -p 端口映射 宿主机port : 容器port –name 指定容器运行名称 coulson/tomcat:v1后面的镜像名版本v1，若在第五步未指定tag，则不需要带；否则必须带着tag。 在浏览器访问http://192.168.24.132:8080/即可看到Tomcat默认页。 七、停止Tomcat容器 1234# docker ps -aCONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMESc810703242f7 coulson/tomcat:v1 "usr/local/soft/tomc…" 20 minutes ago Exited (143) 5 seconds ago Iubuntu3# docker stop c810 八、移除Tomcat容器 12345# docker ps -aCONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMESc810703242f7 coulson/tomcat:v1 "usr/local/soft/tomc…" 20 minutes ago Exited (143) 5 seconds ago Iubuntu3071730e664f8 hello-world "/hello" 5 hours ago Exited (0) 5 hours ago # docker rm c810 九、移除镜像 12345# docker imagesREPOSITORY TAG IMAGE ID CREATED SIZEcoulson/tomcat v1 795e6cc94ef7 2 hours ago 496MBubuntu latest 93fd78260bd1 4 weeks ago 86.2MB# docker rmi 795e 十、挂载网站目录 1docker run -d -p 8080:8080 -v /home/coulson/root/webapps/:/usr/local/soft/apache-tomcat-8.5.37/webapps/ --name Iubuntu3 coulson/tomcat:v1]]></content>
@@ -23,17 +34,6 @@
         <tag>java</tag>
         <tag>docker</tag>
         <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[问与答]]></title>
-    <url>%2FQ-And-A.html</url>
-    <content type="text"><![CDATA[Q1. 以下代码有逸出，求解？书中说道：当ThisEscape发布EventListener时，它也无条件地发布了封装ThisEscape的实例，因为内引类的实例包含了对封装实例隐含的引用。 1234567891011public class ThisEscape &#123; public ThisEscape(EventSource source) &#123; source.registerListener &#123; new EvenetListener() &#123; public void onEvent(Event e) &#123; doSomething(e); &#125; &#125; &#125; &#125;&#125; 使用工厂方法防止this引用在构造期间逸出 1234567891011121314151617public class SafeListener &#123; private final EvenetListener listener; private SafeListener() &#123; listener = new EventListener() &#123; public void onEvent(Event e) &#123; doSomething(e); &#125; &#125; &#125; public static SafeListener newInstance(EventSource source) &#123; SafeListener safe = new SafeListener(); source.registerListener(safe.listener); return safe; &#125;&#125;]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
