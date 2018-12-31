@@ -104,7 +104,8 @@ baidusitemap:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/coulsonz/coulsonz.github.io.git
+  # repository: https://github.com/coulsonz/coulsonz.github.io.git
+  repository: git@github.com:coulsonz/coulsonz.github.io.git
   branch: master
   # repository: https://git.coding.net/syswar/coulsonz.git # bacup to coding.net
   # branch: master
