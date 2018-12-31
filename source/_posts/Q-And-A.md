@@ -27,6 +27,8 @@ public class ThisEscape {
 }
 ```
 
+<!-- more -->
+
 使用工厂方法防止this引用在构造期间逸出
 
 ```java

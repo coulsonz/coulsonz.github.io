@@ -26,6 +26,8 @@ docker pull ubuntu
 jdk1.8下载：<http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>
 tomcat8下载：<https://tomcat.apache.org/download-80.cgi>
 
+<!-- more -->
+
 **三、解压，创建Dockerfile文件**
 
 ```shell
