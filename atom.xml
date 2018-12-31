@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.syswar.cc/"/>
-  <updated>2018-12-17T13:45:48.586Z</updated>
+  <updated>2018-12-31T08:56:20.421Z</updated>
   <id>http://www.syswar.cc/</id>
   
   <author>
@@ -15,6 +15,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mybatis工作流程浅析</title>
+    <link href="http://www.syswar.cc/Mybatis-source-process.html"/>
+    <id>http://www.syswar.cc/Mybatis-source-process.html</id>
+    <published>2018-12-31T07:36:35.000Z</published>
+    <updated>2018-12-31T08:56:20.421Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Mybatis核心流程三大阶段"><a href="#Mybatis核心流程三大阶段" class="headerlink" title="Mybatis核心流程三大阶段"></a>Mybatis核心流程三大阶段</h1><ol><li><p>初始化阶段<br>读取XML配置文件和注解中的配置信息，创建配置对象，并完成各个模块的初始化工作</p></li><li><p>代理阶段</p><p>封装iBatis的编程模型，使用Mapper接口开发的初始化工作</p></li><li><p>数据读写阶段</p><p>通过SqlSession完成SQL的解析，参数的映射，SQL的执行，结果的反射解析过程</p><a id="more"></a></li></ol><h2 id="1-初始化阶段"><a href="#1-初始化阶段" class="headerlink" title="1.初始化阶段"></a>1.初始化阶段</h2><p>读取XML配置文件和数据库配置文件中的信息加载到configuration对象中；</p><p><img src="..\imgs\Mybatis-source-process-1.JPG" alt="mybatis初始化configuration对象"></p><p>初始化流程：</p><ol><li><p>读取xml配置文件加载到内存。configuration对象创建于SqlSessionFactory对象中，该对象的属性在SqlSessionFactory中读取xml文件并赋值。</p></li><li><p>工厂类生产SqlSession。在SqlSessionFactory对象中，通过openSession方法return一个SqlSession对象。</p></li></ol><h2 id="2-代理阶段"><a href="#2-代理阶段" class="headerlink" title="2.代理阶段"></a>2.代理阶段</h2><p>流程为<code>配置文件解读 + 动态代理的增强</code>，即</p><ul><li>找到session中对应的方法执行；</li><li>找到命名空间和方法名</li><li>传递参数</li></ul><hr><p>解读SqlSession会话</p><blockquote><p>SqlSession意味着创建数据库会话，代表一次与数据库的连接；</p><ul><li>是Mybatis对外提供数据访问的主要API（来自于ibatis编程的方式）；</li><li>实际上SqlSession的功能都是基于Executor来实现的；</li></ul></blockquote><p>在SqlSession类中声名configuration和Executor对象，然后最终所有SQL语句调用Executor去执行。</p><p>例如：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.对外提供服务，把请求转发给Executor</span></span><br><span class="line"><span class="comment">//2.给mapper接口生成实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlSession</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> Configuration conf;</span><br><span class="line">    <span class="keyword">private</span> Executor executor;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SqlSession</span><span class="params">(Configuration conf)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.conf = conf;</span><br><span class="line">        executor = <span class="keyword">new</span> Executor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//该方法是iBatis编程模型方法，statement为mapper.xml的命名空间+类名的合成作为参数</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">selectOne</span><span class="params">(String statement, Object parameter)</span> </span>&#123;</span><br><span class="line">        MappedStatment ms = conf.getMappedStatement().get(statement);</span><br><span class="line">        <span class="comment">//ms为传入的SQL语句，parameter为查询参数</span></span><br><span class="line">        <span class="keyword">return</span> executor.query(ms, parameter);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//使用mapper接口编程，利用动态代理和反射机制</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">getMapper</span><span class="params">(Class&lt;T&gt; type)</span> </span>&#123;</span><br><span class="line">        MappedProxy mp = <span class="keyword">new</span> MappedProxy(<span class="keyword">this</span>);<span class="comment">//this标识SqlSession本身</span></span><br><span class="line">        <span class="comment">//参数分别为1.类加载器，2.类型数组，3.反射机制找到的sql语句mp</span></span><br><span class="line">        <span class="keyword">return</span> (T) Proxy.newProxyInstance(type.getClassLoader, <span class="keyword">new</span> Class[]&#123;type&#125;, mp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>mybatis两种编程模型</p><ul><li>Mybatis封装了iBatis编程模型，使用SqlSession对外提供数据库的访问；</li><li>使用Mapper接口编程，就可以访问数据库。</li></ul></blockquote><h2 id="3-数据读写阶段"><a href="#3-数据读写阶段" class="headerlink" title="3.数据读写阶段"></a>3.数据读写阶段</h2><p>即Executor的执行，需要遵循JDBC规范。</p><p>注：Executor执行后的结果需要通过反射机制确定结果类型。</p><hr><h2 id="总体的实现思路"><a href="#总体的实现思路" class="headerlink" title="总体的实现思路"></a>总体的实现思路</h2><blockquote><p>查询语句的实现流程如下：</p><hr><p>​    <strong><em>一阶段</em></strong></p><ol><li><p>创建SqlSessionFactory实例；</p></li><li><p>实例化过程中，加载配置文件创建configuration对象；</p></li><li><p>通过factory创建SqlSession；</p><hr><p><strong><em>二阶段</em></strong></p></li><li><p>通过SqlSession获取mapper接口动态代理；</p></li><li><p>动态代理回调SqlSession中某个查询方法；</p><hr><p><strong><em>三阶段</em></strong></p></li><li><p>SqlSession将查询结果转发给Executor；</p></li><li><p>Executor基于JDBC访问数据库获取数据；</p></li><li><p>Executor通过反射将数据转化成POJO并返回给SqlSession；</p></li><li><p>将数据返回给调用者。</p></li></ol></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Mybatis核心流程三大阶段&quot;&gt;&lt;a href=&quot;#Mybatis核心流程三大阶段&quot; class=&quot;headerlink&quot; title=&quot;Mybatis核心流程三大阶段&quot;&gt;&lt;/a&gt;Mybatis核心流程三大阶段&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;初始化阶段&lt;br&gt;读取XML配置文件和注解中的配置信息，创建配置对象，并完成各个模块的初始化工作&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;代理阶段&lt;/p&gt;
+&lt;p&gt;封装iBatis的编程模型，使用Mapper接口开发的初始化工作&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据读写阶段&lt;/p&gt;
+&lt;p&gt;通过SqlSession完成SQL的解析，参数的映射，SQL的执行，结果的反射解析过程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.syswar.cc/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://www.syswar.cc/tags/java/"/>
+    
+      <category term="mybatis" scheme="http://www.syswar.cc/tags/mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>问与答</title>
+    <link href="http://www.syswar.cc/Q-And-A.html"/>
+    <id>http://www.syswar.cc/Q-And-A.html</id>
+    <published>2018-12-19T02:30:06.000Z</published>
+    <updated>2018-12-31T08:55:41.847Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Q1-以下代码有逸出，求解？"><a href="#Q1-以下代码有逸出，求解？" class="headerlink" title="Q1. 以下代码有逸出，求解？"></a>Q1. 以下代码有逸出，求解？</h2><p>书中说道：当ThisEscape发布EventListener时，它也无条件地发布了封装ThisEscape的实例，因为内引类的实例包含了对封装实例隐含的引用。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThisEscape</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThisEscape</span><span class="params">(EventSource source)</span> </span>&#123;</span><br><span class="line">        source.registerListener &#123;</span><br><span class="line">            <span class="keyword">new</span> EvenetListener() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(Event e)</span> </span>&#123;</span><br><span class="line">                    doSomething(e);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><p>使用工厂方法防止this引用在构造期间逸出</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SafeListener</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> EvenetListener listener;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SafeListener</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        listener = <span class="keyword">new</span> EventListener() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onEvent</span><span class="params">(Event e)</span> </span>&#123;</span><br><span class="line">                doSomething(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SafeListener <span class="title">newInstance</span><span class="params">(EventSource source)</span> </span>&#123;</span><br><span class="line">        SafeListener safe = <span class="keyword">new</span> SafeListener();</span><br><span class="line">        source.registerListener(safe.listener);</span><br><span class="line">        <span class="keyword">return</span> safe;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Q1-以下代码有逸出，求解？&quot;&gt;&lt;a href=&quot;#Q1-以下代码有逸出，求解？&quot; class=&quot;headerlink&quot; title=&quot;Q1. 以下代码有逸出，求解？&quot;&gt;&lt;/a&gt;Q1. 以下代码有逸出，求解？&lt;/h2&gt;&lt;p&gt;书中说道：当ThisEscape发布EventListener时，它也无条件地发布了封装ThisEscape的实例，因为内引类的实例包含了对封装实例隐含的引用。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ThisEscape&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ThisEscape&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(EventSource source)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        source.registerListener &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; EvenetListener() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onEvent&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Event e)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    doSomething(e);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.syswar.cc/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://www.syswar.cc/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu系统中Docker安装Tomcat</title>
+    <link href="http://www.syswar.cc/Docker-install-Tomcat.html"/>
+    <id>http://www.syswar.cc/Docker-install-Tomcat.html</id>
+    <published>2018-12-19T02:30:06.000Z</published>
+    <updated>2018-12-31T08:55:14.285Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>Docker构建镜像的方法主要有两种：</strong></p><ol><li><p>使用docker commit命令;</p></li><li><p>使用docker build命令和Dockerfile文件（更为强大、灵活和常用）;</p></li></ol><p><strong>一、准备centos镜像</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure><p><strong>二、下载jdk、tomcat安装包，上传/usr/local/soft目录下</strong></p><p>jdk1.8下载：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>tomcat8下载：<a href="https://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">https://tomcat.apache.org/download-80.cgi</a></p><a id="more"></a><p><strong>三、解压，创建Dockerfile文件</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-8.5.31.tar.gz #解压tomcat</span><br><span class="line">tar -zxvf jdk-8u171-linux-x64.tar.gz #解压jdk</span><br><span class="line">rm -rf apache-tomcat-8.5.31.tar.gz #删除安装包</span><br><span class="line">rm -rf jdk-8u171-linux-x64.tar.gz #删除安装包</span><br><span class="line">touch Dockerfile #创建文件</span><br></pre></td></tr></table></figure><p><strong>四、编写Dockerfile文件</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>指定操作的镜像，此处镜像名必须小写</span><br><span class="line">FROM ubuntu</span><br><span class="line"><span class="meta">#</span> 维护者信息</span><br><span class="line">MAINTAINER coulson</span><br><span class="line"><span class="meta">#</span>执行命令：创建目录</span><br><span class="line">RUN mkdir -p /usr/local/soft</span><br><span class="line"><span class="meta">#</span>将jdk1.8.0_171添加到镜像centos的/usr/local/soft/目录下，并命名为jdk</span><br><span class="line">ADD jdk1.8.0_171 /usr/local/soft/jdk</span><br><span class="line"><span class="meta">#</span>将apache-tomcat-8.5.31添加到镜像centos的/usr/local/soft/目录下，并命名为tomcat</span><br><span class="line">ADD apache-tomcat-8.5.31 /usr/local/soft/tomcat</span><br><span class="line"><span class="meta">#</span>添加环境变量</span><br><span class="line">ENV JAVA_HOME /usr/local/soft/jdk</span><br><span class="line">ENV CATALINA_HOME /usr/local/soft/tomcat</span><br><span class="line">ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin</span><br><span class="line"><span class="meta">#</span>暴露8080端口</span><br><span class="line">EXPOSE 8080</span><br><span class="line"><span class="meta">#</span>启动时运行tomcat</span><br><span class="line">CMD ["/usr/local/soft/tomcat/bin/catalina.sh","run"]</span><br></pre></td></tr></table></figure><p>说明：</p><blockquote><p>FROM : 指定基础镜像，并且必须是第一条指令</p><p>MAINTAINER ： 指定作者</p><p>RUN : 运行指定的命令</p><p>ADD : 复制命令，把文件复制到镜像中。</p><p>ENV : 设置环境变量</p><p>EXPOSE : 功能为暴漏容器运行时的监听端口给外部</p><p>CMD : 指定容器启动时运行的命令</p></blockquote><p><strong>五、构建Docker镜像</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t coulson/tomcat:v1 .</span><br></pre></td></tr></table></figure><p>-t 设置tag名称, 命名规则registry/image:tag（若不添加版本号,默认latest）<br>. 表示使用当前目录下的Dockerfile文件（注意语句后面有一个点）</p><p><strong>六、启动镜像，访问</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8080:8080 --name Iubuntu coulson/tomcat:v1</span><br></pre></td></tr></table></figure><p>说明：</p><blockquote><p>-d 后台运行     </p><p>-p 端口映射  宿主机port : 容器port</p><p>–name 指定容器运行名称</p><p>coulson/tomcat:v1后面的镜像名版本v1，若在第五步未指定tag，则不需要带；否则必须带着tag。</p></blockquote><p>在浏览器访问<a href="http://192.168.24.132:8080/即可看到Tomcat默认页。" target="_blank" rel="noopener">http://192.168.24.132:8080/即可看到Tomcat默认页。</a></p><p>七、停止Tomcat容器</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                       PORTS               NAMES</span><br><span class="line">c810703242f7        coulson/tomcat:v1   "usr/local/soft/tomc…"   20 minutes ago      Exited (143) 5 seconds ago                       Iubuntu3</span><br><span class="line"><span class="meta">#</span> docker stop c810</span><br></pre></td></tr></table></figure><p>八、移除Tomcat容器</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                       PORTS               NAMES</span><br><span class="line">c810703242f7        coulson/tomcat:v1   "usr/local/soft/tomc…"   20 minutes ago      Exited (143) 5 seconds ago                       Iubuntu3</span><br><span class="line">071730e664f8        hello-world         "/hello"                 5 hours ago         Exited (0) 5 hours ago  </span><br><span class="line"><span class="meta">#</span> docker rm c810</span><br></pre></td></tr></table></figure><p>九、移除镜像</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">coulson/tomcat      v1                  795e6cc94ef7        2 hours ago         496MB</span><br><span class="line">ubuntu              latest              93fd78260bd1        4 weeks ago         86.2MB</span><br><span class="line"><span class="meta">#</span> docker rmi 795e</span><br></pre></td></tr></table></figure><p>十、挂载网站目录</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8080:8080 -v /home/coulson/root/webapps/:/usr/local/soft/apache-tomcat-8.5.37/webapps/ --name Iubuntu3 coulson/tomcat:v1</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;Docker构建镜像的方法主要有两种：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;使用docker commit命令;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用docker build命令和Dockerfile文件（更为强大、灵活和常用）;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;一、准备centos镜像&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;docker pull ubuntu&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;二、下载jdk、tomcat安装包，上传/usr/local/soft目录下&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;jdk1.8下载：&lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&lt;/a&gt;&lt;br&gt;tomcat8下载：&lt;a href=&quot;https://tomcat.apache.org/download-80.cgi&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://tomcat.apache.org/download-80.cgi&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.syswar.cc/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://www.syswar.cc/tags/java/"/>
+    
+      <category term="docker" scheme="http://www.syswar.cc/tags/docker/"/>
+    
+      <category term="tomcat" scheme="http://www.syswar.cc/tags/tomcat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA并发编程实践笔录（一）</title>
+    <link href="http://www.syswar.cc/Java-Concurrency-in-Practice-1.html"/>
+    <id>http://www.syswar.cc/Java-Concurrency-in-Practice-1.html</id>
+    <published>2018-12-19T01:53:06.000Z</published>
+    <updated>2018-12-31T07:30:36.541Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-volatile变量"><a href="#1-volatile变量" class="headerlink" title="1. volatile变量"></a>1. volatile变量</h2><p>例子：数绵羊</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> <span class="keyword">boolean</span> asleep;</span><br><span class="line">……</span><br><span class="line"><span class="keyword">while</span> (!asleep)</span><br><span class="line">countSomeSheep();</span><br></pre></td></tr></table></figure><p>​    上面的例子示范了一种volatile变量的典型应用：检查状态标记，以确定是否退出一个循环。为了让该程序正常工作，asleep必须标记为volatile，    否则执行检查的线程不会注意到asleep已被其他线程修改。</p><p>​    当然，我们也可以用锁来代替volatile，同样能保证对asleep变量修改的可见性。但是锁会使代码变得复杂。</p><blockquote><p>加锁可以保证可见性与原子性；volatile变量只能保证可见性。</p></blockquote><p>​    只有满足了下面所有标准后，你才能使用volatile变量：</p><ul><li>写入变量时并不依赖变量的当前值；或者能够确保只有单一的线程修改变量的值；</li><li>变量不需要与其他的状态变量共同参与不变约束；</li><li>访问变量时，没有其他的原因需要加锁。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-volatile变量&quot;&gt;&lt;a href=&quot;#1-volatile变量&quot; class=&quot;headerlink&quot; title=&quot;1. volatile变量&quot;&gt;&lt;/a&gt;1. volatile变量&lt;/h2&gt;&lt;p&gt;例子：数绵羊&lt;/p&gt;
+&lt;figure class=&quot;hi
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.syswar.cc/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://www.syswar.cc/tags/java/"/>
+    
+      <category term="multiThread" scheme="http://www.syswar.cc/tags/multiThread/"/>
+    
+  </entry>
   
   <entry>
     <title>置顶-test</title>

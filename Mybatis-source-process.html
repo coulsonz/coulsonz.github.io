@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 <script>
     (function(){
@@ -36,8 +36,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -56,7 +56,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -64,9 +64,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
@@ -84,31 +84,33 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,mybatis,">
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Coulson Zhang`s Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Coulson Zhang`s Blog" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="&amp;lt;!DOCTYPE HTML&amp;gt;">
-<meta name="keywords" content="share java spring oracle shell">
-<meta property="og:type" content="website">
-<meta property="og:title" content="404">
-<meta property="og:url" content="http://www.syswar.cc/404/index.html">
+<meta name="description" content="Mybatis核心流程三大阶段 初始化阶段读取XML配置文件和注解中的配置信息，创建配置对象，并完成各个模块的初始化工作  代理阶段 封装iBatis的编程模型，使用Mapper接口开发的初始化工作  数据读写阶段 通过SqlSession完成SQL的解析，参数的映射，SQL的执行，结果的反射解析过程">
+<meta name="keywords" content="java,mybatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis工作流程浅析">
+<meta property="og:url" content="http://www.syswar.cc/Mybatis-source-process.html">
 <meta property="og:site_name" content="Coulson Zhang`s Blog">
-<meta property="og:description" content="&amp;lt;!DOCTYPE HTML&amp;gt;">
+<meta property="og:description" content="Mybatis核心流程三大阶段 初始化阶段读取XML配置文件和注解中的配置信息，创建配置对象，并完成各个模块的初始化工作  代理阶段 封装iBatis的编程模型，使用Mapper接口开发的初始化工作  数据读写阶段 通过SqlSession完成SQL的解析，参数的映射，SQL的执行，结果的反射解析过程">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-13T11:25:31.026Z">
+<meta property="og:image" content="http://www.syswar.cc/imgs/Mybatis-source-process-1.JPG">
+<meta property="og:updated_time" content="2018-12-31T08:56:20.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404">
-<meta name="twitter:description" content="&amp;lt;!DOCTYPE HTML&amp;gt;">
+<meta name="twitter:title" content="Mybatis工作流程浅析">
+<meta name="twitter:description" content="Mybatis核心流程三大阶段 初始化阶段读取XML配置文件和注解中的配置信息，创建配置对象，并完成各个模块的初始化工作  代理阶段 封装iBatis的编程模型，使用Mapper接口开发的初始化工作  数据读写阶段 通过SqlSession完成SQL的解析，参数的映射，SQL的执行，结果的反射解析过程">
+<meta name="twitter:image" content="http://www.syswar.cc/imgs/Mybatis-source-process-1.JPG">
 
 
 
@@ -138,7 +140,7 @@
 
 
 
-  <link rel="canonical" href="http://www.syswar.cc/404/"/>
+  <link rel="canonical" href="http://www.syswar.cc/Mybatis-source-process.html">
 
 
 
@@ -154,7 +156,7 @@
 
 
 <link href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css" rel="stylesheet">
-  <title>404 | Coulson Zhang`s Blog</title>
+  <title>Mybatis工作流程浅析 | Coulson Zhang`s Blog</title>
   
 
 
@@ -166,7 +168,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -177,15 +179,10 @@
     <div class="headband"></div>
 	
 	<a href="https://github.com/coulsonz" class="github-corner" aria-label="View source on GitHub">
-		<svg width="80" height="80" 
-		viewBox="0 0 250 250" 
-		style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" 
-		aria-hidden="true">
-		<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-		<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" 
-		fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-		<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" 
-		fill="currentColor" class="octo-body"></path>
+		<svg width="80" height="80" viewbox="0 0 250 250" style="fill:#FD6C6C; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+		<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+		<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+		<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
 		</svg>
 	</a>
 	<style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
@@ -193,13 +190,13 @@
 		@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
 	</style>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Coulson Zhang`s Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -234,7 +231,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -249,7 +246,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -266,7 +263,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
             
             Java
           </a>
@@ -283,7 +280,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-database"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-database"></i> <br>
             
             数据库
           </a>
@@ -300,7 +297,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-magic"></i> <br>
             
             WEB前端
           </a>
@@ -317,7 +314,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
             随笔
           </a>
@@ -334,7 +331,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-filter"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-filter"></i> <br>
             
             未分类
           </a>
@@ -349,7 +346,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -364,7 +361,7 @@
 			
 			<!-- 结束判断是否为二级目录 -->
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -377,7 +374,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -398,9 +395,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -425,34 +420,394 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.syswar.cc/Mybatis-source-process.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Coulson Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Coulson Zhang`s Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">404</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>&lt;!DOCTYPE HTML&gt;</p>
-<html><br><head><meta name="generator" content="Hexo 3.8.0"><br>  <meta http-equiv="content-type" content="text/html;charset=utf-8;"><br>  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><br>  <meta name="robots" content="all"><br>  <meta name="robots" content="index,follow"><br>  <link rel="stylesheet" type="text/css" href="https://qzone.qq.com/gy/404/style/404style.css"><br></head><br><body><br>  <script type="text/plain" src="http://www.qq.com/404/search_children.js" charset="utf-8" homepageurl="/" homepagename="回到我的主页"><br>  </script><br>  <script src="https://qzone.qq.com/gy/404/data.js" charset="utf-8"></script><br>  <script src="https://qzone.qq.com/gy/404/page.js" charset="utf-8"></script><br></body><br></html>
+          <h1 class="post-title" itemprop="name headline">Mybatis工作流程浅析</h1>
         
-      </div>
+
+        <div class="post-meta">
+			
+			  <i class="fa fa-thumb-tack"></i>
+			  <font color="7D26CD">置顶</font>
+			  <span class="post-meta-divider">|</span>
+			
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T15:36:35+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-31T16:56:20+08:00">
+                2018-12-31
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Mybatis-source-process.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Mybatis-source-process.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+		  
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  733 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="Mybatis核心流程三大阶段"><a href="#Mybatis核心流程三大阶段" class="headerlink" title="Mybatis核心流程三大阶段"></a>Mybatis核心流程三大阶段</h1><ol>
+<li><p>初始化阶段<br>读取XML配置文件和注解中的配置信息，创建配置对象，并完成各个模块的初始化工作</p>
+</li>
+<li><p>代理阶段</p>
+<p>封装iBatis的编程模型，使用Mapper接口开发的初始化工作</p>
+</li>
+<li><p>数据读写阶段</p>
+<p>通过SqlSession完成SQL的解析，参数的映射，SQL的执行，结果的反射解析过程</p>
+<a id="more"></a>
+</li>
+</ol>
+<h2 id="1-初始化阶段"><a href="#1-初始化阶段" class="headerlink" title="1.初始化阶段"></a>1.初始化阶段</h2><p>读取XML配置文件和数据库配置文件中的信息加载到configuration对象中；</p>
+<p><img src="..\imgs\Mybatis-source-process-1.JPG" alt="mybatis初始化configuration对象"></p>
+<p>初始化流程：</p>
+<ol>
+<li><p>读取xml配置文件加载到内存。configuration对象创建于SqlSessionFactory对象中，该对象的属性在SqlSessionFactory中读取xml文件并赋值。</p>
+</li>
+<li><p>工厂类生产SqlSession。在SqlSessionFactory对象中，通过openSession方法return一个SqlSession对象。</p>
+</li>
+</ol>
+<h2 id="2-代理阶段"><a href="#2-代理阶段" class="headerlink" title="2.代理阶段"></a>2.代理阶段</h2><p>流程为<code>配置文件解读 + 动态代理的增强</code>，即</p>
+<ul>
+<li>找到session中对应的方法执行；</li>
+<li>找到命名空间和方法名</li>
+<li>传递参数</li>
+</ul>
+<hr>
+<p>解读SqlSession会话</p>
+<blockquote>
+<p>SqlSession意味着创建数据库会话，代表一次与数据库的连接；</p>
+<ul>
+<li>是Mybatis对外提供数据访问的主要API（来自于ibatis编程的方式）；</li>
+<li>实际上SqlSession的功能都是基于Executor来实现的；</li>
+</ul>
+</blockquote>
+<p>在SqlSession类中声名configuration和Executor对象，然后最终所有SQL语句调用Executor去执行。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.对外提供服务，把请求转发给Executor</span></span><br><span class="line"><span class="comment">//2.给mapper接口生成实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlSession</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Configuration conf;</span><br><span class="line">    <span class="keyword">private</span> Executor executor;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SqlSession</span><span class="params">(Configuration conf)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.conf = conf;</span><br><span class="line">        executor = <span class="keyword">new</span> Executor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//该方法是iBatis编程模型方法，statement为mapper.xml的命名空间+类名的合成作为参数</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">selectOne</span><span class="params">(String statement, Object parameter)</span> </span>&#123;</span><br><span class="line">        MappedStatment ms = conf.getMappedStatement().get(statement);</span><br><span class="line">        <span class="comment">//ms为传入的SQL语句，parameter为查询参数</span></span><br><span class="line">        <span class="keyword">return</span> executor.query(ms, parameter);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//使用mapper接口编程，利用动态代理和反射机制</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">getMapper</span><span class="params">(Class&lt;T&gt; type)</span> </span>&#123;</span><br><span class="line">        MappedProxy mp = <span class="keyword">new</span> MappedProxy(<span class="keyword">this</span>);<span class="comment">//this标识SqlSession本身</span></span><br><span class="line">        <span class="comment">//参数分别为1.类加载器，2.类型数组，3.反射机制找到的sql语句mp</span></span><br><span class="line">        <span class="keyword">return</span> (T) Proxy.newProxyInstance(type.getClassLoader, <span class="keyword">new</span> Class[]&#123;type&#125;, mp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>mybatis两种编程模型</p>
+<ul>
+<li>Mybatis封装了iBatis编程模型，使用SqlSession对外提供数据库的访问；</li>
+<li>使用Mapper接口编程，就可以访问数据库。</li>
+</ul>
+</blockquote>
+<h2 id="3-数据读写阶段"><a href="#3-数据读写阶段" class="headerlink" title="3.数据读写阶段"></a>3.数据读写阶段</h2><p>即Executor的执行，需要遵循JDBC规范。</p>
+<p>注：Executor执行后的结果需要通过反射机制确定结果类型。</p>
+<hr>
+<h2 id="总体的实现思路"><a href="#总体的实现思路" class="headerlink" title="总体的实现思路"></a>总体的实现思路</h2><blockquote>
+<p>查询语句的实现流程如下：</p>
+<hr>
+<p>​    <strong><em>一阶段</em></strong></p>
+<ol>
+<li><p>创建SqlSessionFactory实例；</p>
+</li>
+<li><p>实例化过程中，加载配置文件创建configuration对象；</p>
+</li>
+<li><p>通过factory创建SqlSession；</p>
+<hr>
+<p><strong><em>二阶段</em></strong></p>
+</li>
+<li><p>通过SqlSession获取mapper接口动态代理；</p>
+</li>
+<li><p>动态代理回调SqlSession中某个查询方法；</p>
+<hr>
+<p><strong><em>三阶段</em></strong></p>
+</li>
+<li><p>SqlSession将查询结果转发给Executor；</p>
+</li>
+<li><p>Executor基于JDBC访问数据库获取数据；</p>
+</li>
+<li><p>Executor通过反射将数据转化成POJO并返回给SqlSession；</p>
+</li>
+<li><p>将数据返回给调用者。</p>
+</li>
+</ol>
+</blockquote>
+
       
     </div>
     
     
     
+
+	
+      <div>
+        
+	<div style="text-align:center;color: #ccc;font-size:14px;">
+	------ 本文结束 | 感谢阅读 ------
+	</div>
+
+      </div>
+    
+	
+	<div>
+	  
+		
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p style="text-align:center;color: red;font-size:16px;">转载请保留原文链接及作者</p>
+  <p><span>本文标题:</span><a href="/Mybatis-source-process.html">Mybatis工作流程浅析</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Coulson Zhang 的个人博客">Coulson Zhang</a></p>
+  <p><span>发布时间:</span>2018年12月31日 - 15:36</p>
+  <p><span>最后更新:</span>2018年12月31日 - 16:56</p>
+  <p><span>原始链接:</span><a href="/Mybatis-source-process.html" title="Mybatis工作流程浅析">http://www.syswar.cc/Mybatis-source-process.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.syswar.cc/Mybatis-source-process.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a></p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+	  
+	</div>
+	
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Coulson Zhang 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Coulson Zhang 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/mybatis/" rel="tag"><i class="fa fa-tag"></i> mybatis</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Docker-install-Tomcat.html" rel="next" title="Ubuntu系统中Docker安装Tomcat">
+                <i class="fa fa-chevron-left"></i> Ubuntu系统中Docker安装Tomcat
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -490,14 +845,21 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/blog-logo.jpg"
-                alt="Coulson Zhang" />
+              <img class="site-author-image" itemprop="image" src="/images/blog-logo.jpg" alt="Coulson Zhang">
             
               <p class="site-author-name" itemprop="name">Coulson Zhang</p>
               <p class="site-description motion-element" itemprop="description">This is a share blog.</p>
@@ -608,6 +970,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mybatis核心流程三大阶段"><span class="nav-text">Mybatis核心流程三大阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-初始化阶段"><span class="nav-text">1.初始化阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代理阶段"><span class="nav-text">2.代理阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数据读写阶段"><span class="nav-text">3.数据读写阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体的实现思路"><span class="nav-text">总体的实现思路</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1226,6 +1604,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 15522,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
 

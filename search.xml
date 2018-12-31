@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mybatis工作流程浅析]]></title>
+    <url>%2FMybatis-source-process.html</url>
+    <content type="text"><![CDATA[Mybatis核心流程三大阶段 初始化阶段读取XML配置文件和注解中的配置信息，创建配置对象，并完成各个模块的初始化工作 代理阶段 封装iBatis的编程模型，使用Mapper接口开发的初始化工作 数据读写阶段 通过SqlSession完成SQL的解析，参数的映射，SQL的执行，结果的反射解析过程 1.初始化阶段读取XML配置文件和数据库配置文件中的信息加载到configuration对象中； 初始化流程： 读取xml配置文件加载到内存。configuration对象创建于SqlSessionFactory对象中，该对象的属性在SqlSessionFactory中读取xml文件并赋值。 工厂类生产SqlSession。在SqlSessionFactory对象中，通过openSession方法return一个SqlSession对象。 2.代理阶段流程为配置文件解读 + 动态代理的增强，即 找到session中对应的方法执行； 找到命名空间和方法名 传递参数 解读SqlSession会话 SqlSession意味着创建数据库会话，代表一次与数据库的连接； 是Mybatis对外提供数据访问的主要API（来自于ibatis编程的方式）； 实际上SqlSession的功能都是基于Executor来实现的； 在SqlSession类中声名configuration和Executor对象，然后最终所有SQL语句调用Executor去执行。 例如： 123456789101112131415161718192021222324//1.对外提供服务，把请求转发给Executor//2.给mapper接口生成实现类public class SqlSession &#123; private Configuration conf; private Executor executor; public SqlSession(Configuration conf) &#123; this.conf = conf; executor = new Executor(); &#125; //该方法是iBatis编程模型方法，statement为mapper.xml的命名空间+类名的合成作为参数 public &lt;T&gt; T selectOne(String statement, Object parameter) &#123; MappedStatment ms = conf.getMappedStatement().get(statement); //ms为传入的SQL语句，parameter为查询参数 return executor.query(ms, parameter); &#125; //使用mapper接口编程，利用动态代理和反射机制 public &lt;T&gt; T getMapper(Class&lt;T&gt; type) &#123; MappedProxy mp = new MappedProxy(this);//this标识SqlSession本身 //参数分别为1.类加载器，2.类型数组，3.反射机制找到的sql语句mp return (T) Proxy.newProxyInstance(type.getClassLoader, new Class[]&#123;type&#125;, mp); &#125;&#125; mybatis两种编程模型 Mybatis封装了iBatis编程模型，使用SqlSession对外提供数据库的访问； 使用Mapper接口编程，就可以访问数据库。 3.数据读写阶段即Executor的执行，需要遵循JDBC规范。 注：Executor执行后的结果需要通过反射机制确定结果类型。 总体的实现思路 查询语句的实现流程如下： ​ 一阶段 创建SqlSessionFactory实例； 实例化过程中，加载配置文件创建configuration对象； 通过factory创建SqlSession； 二阶段 通过SqlSession获取mapper接口动态代理； 动态代理回调SqlSession中某个查询方法； 三阶段 SqlSession将查询结果转发给Executor； Executor基于JDBC访问数据库获取数据； Executor通过反射将数据转化成POJO并返回给SqlSession； 将数据返回给调用者。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[问与答]]></title>
+    <url>%2FQ-And-A.html</url>
+    <content type="text"><![CDATA[Q1. 以下代码有逸出，求解？书中说道：当ThisEscape发布EventListener时，它也无条件地发布了封装ThisEscape的实例，因为内引类的实例包含了对封装实例隐含的引用。 1234567891011public class ThisEscape &#123; public ThisEscape(EventSource source) &#123; source.registerListener &#123; new EvenetListener() &#123; public void onEvent(Event e) &#123; doSomething(e); &#125; &#125; &#125; &#125;&#125; 使用工厂方法防止this引用在构造期间逸出 1234567891011121314151617public class SafeListener &#123; private final EvenetListener listener; private SafeListener() &#123; listener = new EventListener() &#123; public void onEvent(Event e) &#123; doSomething(e); &#125; &#125; &#125; public static SafeListener newInstance(EventSource source) &#123; SafeListener safe = new SafeListener(); source.registerListener(safe.listener); return safe; &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu系统中Docker安装Tomcat]]></title>
+    <url>%2FDocker-install-Tomcat.html</url>
+    <content type="text"><![CDATA[Docker构建镜像的方法主要有两种： 使用docker commit命令; 使用docker build命令和Dockerfile文件（更为强大、灵活和常用）; 一、准备centos镜像 1docker pull ubuntu 二、下载jdk、tomcat安装包，上传/usr/local/soft目录下 jdk1.8下载：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.htmltomcat8下载：https://tomcat.apache.org/download-80.cgi 三、解压，创建Dockerfile文件 12345tar -zxvf apache-tomcat-8.5.31.tar.gz #解压tomcattar -zxvf jdk-8u171-linux-x64.tar.gz #解压jdkrm -rf apache-tomcat-8.5.31.tar.gz #删除安装包rm -rf jdk-8u171-linux-x64.tar.gz #删除安装包touch Dockerfile #创建文件 四、编写Dockerfile文件 123456789101112131415161718#指定操作的镜像，此处镜像名必须小写FROM ubuntu# 维护者信息MAINTAINER coulson#执行命令：创建目录RUN mkdir -p /usr/local/soft#将jdk1.8.0_171添加到镜像centos的/usr/local/soft/目录下，并命名为jdkADD jdk1.8.0_171 /usr/local/soft/jdk#将apache-tomcat-8.5.31添加到镜像centos的/usr/local/soft/目录下，并命名为tomcatADD apache-tomcat-8.5.31 /usr/local/soft/tomcat#添加环境变量ENV JAVA_HOME /usr/local/soft/jdkENV CATALINA_HOME /usr/local/soft/tomcatENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin#暴露8080端口EXPOSE 8080#启动时运行tomcatCMD ["/usr/local/soft/tomcat/bin/catalina.sh","run"] 说明： FROM : 指定基础镜像，并且必须是第一条指令 MAINTAINER ： 指定作者 RUN : 运行指定的命令 ADD : 复制命令，把文件复制到镜像中。 ENV : 设置环境变量 EXPOSE : 功能为暴漏容器运行时的监听端口给外部 CMD : 指定容器启动时运行的命令 五、构建Docker镜像 1docker build -t coulson/tomcat:v1 . -t 设置tag名称, 命名规则registry/image:tag（若不添加版本号,默认latest）. 表示使用当前目录下的Dockerfile文件（注意语句后面有一个点） 六、启动镜像，访问 1docker run -d -p 8080:8080 --name Iubuntu coulson/tomcat:v1 说明： -d 后台运行 -p 端口映射 宿主机port : 容器port –name 指定容器运行名称 coulson/tomcat:v1后面的镜像名版本v1，若在第五步未指定tag，则不需要带；否则必须带着tag。 在浏览器访问http://192.168.24.132:8080/即可看到Tomcat默认页。 七、停止Tomcat容器 1234# docker ps -aCONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMESc810703242f7 coulson/tomcat:v1 "usr/local/soft/tomc…" 20 minutes ago Exited (143) 5 seconds ago Iubuntu3# docker stop c810 八、移除Tomcat容器 12345# docker ps -aCONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMESc810703242f7 coulson/tomcat:v1 "usr/local/soft/tomc…" 20 minutes ago Exited (143) 5 seconds ago Iubuntu3071730e664f8 hello-world "/hello" 5 hours ago Exited (0) 5 hours ago # docker rm c810 九、移除镜像 12345# docker imagesREPOSITORY TAG IMAGE ID CREATED SIZEcoulson/tomcat v1 795e6cc94ef7 2 hours ago 496MBubuntu latest 93fd78260bd1 4 weeks ago 86.2MB# docker rmi 795e 十、挂载网站目录 1docker run -d -p 8080:8080 -v /home/coulson/root/webapps/:/usr/local/soft/apache-tomcat-8.5.37/webapps/ --name Iubuntu3 coulson/tomcat:v1]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>docker</tag>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVA并发编程实践笔录（一）]]></title>
+    <url>%2FJava-Concurrency-in-Practice-1.html</url>
+    <content type="text"><![CDATA[1. volatile变量例子：数绵羊 1234volatile boolean asleep;…… while (!asleep) countSomeSheep(); ​ 上面的例子示范了一种volatile变量的典型应用：检查状态标记，以确定是否退出一个循环。为了让该程序正常工作，asleep必须标记为volatile， 否则执行检查的线程不会注意到asleep已被其他线程修改。 ​ 当然，我们也可以用锁来代替volatile，同样能保证对asleep变量修改的可见性。但是锁会使代码变得复杂。 加锁可以保证可见性与原子性；volatile变量只能保证可见性。 ​ 只有满足了下面所有标准后，你才能使用volatile变量： 写入变量时并不依赖变量的当前值；或者能够确保只有单一的线程修改变量的值； 变量不需要与其他的状态变量共同参与不变约束； 访问变量时，没有其他的原因需要加锁。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>multiThread</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[置顶-test]]></title>
     <url>%2F%E7%BD%AE%E9%A1%B6-test.html</url>
     <content type="text"><![CDATA[每次换电脑更新博客前，先执行以下步骤 先git remote add origin https://github.com/coulsonz/coulsonz.github.io.git 然后git pull origin hexo最新的hexo文件 执行npm install 编辑、撰写文章或其他博客更新改动 依次执行git add .、git commit -m &#39;back up hexo files&#39;（引号内容可改）、git push指令，保证 hexo 分支版本最新 最后，发布新内容，执行hexo d -g指令 图片链接测试]]></content>
